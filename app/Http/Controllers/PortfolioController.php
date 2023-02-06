@@ -16,7 +16,7 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        return view('')
+        return view('dashboard.portfolio');
     }
 
     /**
@@ -26,7 +26,8 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        //
+        $portfolio = Portfolio::all();
+        return view('dashboard.porfolio', compact('portfolio'));
     }
 
     /**
@@ -42,11 +43,24 @@ class PortfolioController extends Controller
             'address'=> 'required'
 
         ]);
+        $image = $request->file('image');
+        $imgName = time().rand().'.'.$image->extension();
+
+        if(!file_exists(public_path('/assets/img/data/'.$image->getClientOriginalName()))){
+            //set untuk menyimpan file nya
+            $dPath = public_path('/assets/img/data/');
+            //memindahkan file yang diupload ke directory yang telah ditentukan
+            $image->move($dPath, $imgName);
+            $uploaded = $imgName;
+        }else{
+            $uploaded = $image->getClientOriginalName();
+        }
+
         Portfolio::create([
             'image' => $request->image,
-            'address' => $request->address,
+            'address' => $uploaded,
         ]);
-        // return view('')->with('success', 'Anda berhasil menambahkan data!');
+        return view('/')->with('success', 'Anda berhasil menambahkan data!');
     }
 
     /**
@@ -68,13 +82,14 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio)
     {
-        //
+        $portfolio= Portfolio::where('id', $id)->first();
+        return view('/dashboard/portfolio', compact('portfolio'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
@@ -90,6 +105,7 @@ class PortfolioController extends Controller
             'desc' => $request->desc,
     
         ]);
+        return view('/')->with('success', 'Anda berhasil mengupdate data');
       
     }
 

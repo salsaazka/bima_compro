@@ -16,7 +16,7 @@ class VisionMissionController extends Controller
      */
     public function index()
     {
-       // return view('');
+       return view('dashboard.vision_mission');
     }
 
     /**
@@ -26,7 +26,8 @@ class VisionMissionController extends Controller
      */
     public function create()
     {
-        //
+        $visionMission = VisionMission::all();
+        return view('dashboard.vision_mission', compact('visionMission'));
     }
 
     /**
@@ -37,7 +38,17 @@ class VisionMissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'desc'=> 'required',
+            
+        ]);
+        VisionMission::create([
+            'title'=> $request->title,
+            'desc' => $request->desc,
+    
+        ]);
+       return view('/')->with('success', 'Anda berhasil menambahkan data!');
     }
 
     /**
@@ -59,7 +70,8 @@ class VisionMissionController extends Controller
      */
     public function edit(VisionMission $visionMission)
     {
-        //
+        $visionMission= VisionMission::where('id', $id)->first();
+        return view('/dashboard/portfolio', compact('visionMission'));
     }
 
     /**
@@ -81,7 +93,7 @@ class VisionMissionController extends Controller
             'desc' => $request->desc,
     
         ]);
-       // return view('')->with('success', 'Anda berhasil mengedit data!');
+       return view('/')->with('success', 'Anda berhasil mengedit data!');
     }
 
     /**

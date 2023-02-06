@@ -16,7 +16,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('client');
+        return view('dashboard.client');
     }
 
     /**
@@ -26,7 +26,8 @@ class ClientController extends Controller
      */
     public function create()
     {
-        // return view('');
+        $clients = Client::all();
+        return view('dashboard.client', compact('clients'));
     }
 
     /**
@@ -42,11 +43,25 @@ class ClientController extends Controller
             'image'=> 'required'
 
         ]);
+
+        $image = $request->file('image');
+        $imgName = time().rand().'.'.$image->extension();
+
+        if(!file_exists(public_path('/assets/img/data/'.$image->getClientOriginalName()))){
+            //set untuk menyimpan file nya
+            $dPath = public_path('/assets/img/data/');
+            //memindahkan file yang diupload ke directory yang telah ditentukan
+            $image->move($dPath, $imgName);
+            $uploaded = $imgName;
+        }else{
+            $uploaded = $image->getClientOriginalName();
+        }
+
         Client::create([
             'name'=> $request->name,
-            'image' => $request->image,
+            'image' => $uploaded,
         ]);
-        // return view('')->with('success', 'Anda berhasil menambahkan data!');
+         return redirect()->route('store.client')->with('success', 'Anda berhasil menambahkan data!');
 
     }
 

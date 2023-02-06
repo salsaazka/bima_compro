@@ -16,7 +16,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        return view('dashboard.contact');
     }
 
     /**
@@ -26,7 +26,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contact');
+        $contactUs = Contact::all();
+        return view('dashboard.contact', compact('contactUs'));
     }
 
     /**
@@ -37,7 +38,19 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-       
+        $request->validate([
+            'email'=>'required',
+            'no_telp'=> 'required',
+            'address'=> 'required',
+            'web' => 'required'
+        ]);
+        Contact::create([
+            'email'=> $request->email,
+            'no_telp' => $request->no_telp,
+            'address' => $request->address,
+            'web' => $request->web,
+        ]);
+        return view('/')->with('success', 'Anda berhasil mengedit data!');
     }
 
     /**
@@ -59,8 +72,8 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        $contact= Contact::where('id', $id)->first();
-        return view('/contact', compact('contact'));
+        $contactUs= Contact::where('id', $id)->first();
+        return view('/dashboard/contact', compact('contactUs'));
     }
 
     /**
@@ -84,7 +97,7 @@ class ContactController extends Controller
             'address' => $request->address,
             'web' => $request->web,
         ]);
-        return view('/contact')->with('success', 'Anda berhasil mengedit data!');
+        return view('/')->with('success', 'Anda berhasil mengedit data!');
     }
 
     /**

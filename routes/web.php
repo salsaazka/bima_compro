@@ -13,24 +13,24 @@ Route::get('/', function () {
 
 //Client
 Route::get('/dashboard/client', [ClientController::class, 'index'])->name('index');
-Route::get('/create', [ClientController::class, 'create'])->name('create');
-Route::post('/store', [ClientController::class, 'store'])->name('store');
-Route::delete('/delete/{id}', [ClientController::class, 'destroy'])->name('delete');
+Route::get('/create', [ClientController::class, 'create'])->name('create.client');
+Route::post('/store', [ClientController::class, 'store'])->name('store.client');
+Route::delete('/delete/{id}', [ClientController::class, 'destroy'])->name('delete.client');
 
 //Contact Us
-Route::get('/dashboard/contact', [ClientController::class, 'index'])->name('index');
-Route::get('/edit/{id}', [ContactController::class, 'edit'])->name('edit'); 
-Route::patch('/update/{id}', [ContactController::class, 'update'])->name('update');
+Route::get('/dashboard/contact', [ContactController::class, 'index'])->name('index.contact');
+Route::get('/edit/{id}', [ContactController::class, 'edit'])->name('edit.contact'); 
+Route::patch('/update/{id}', [ContactController::class, 'update'])->name('update.contact');
 
 //Portfolio
-Route::get('/dashboard/portfolio', [ClientController::class, 'index'])->name('index');
-Route::get('/create', [PortfolioController::class, 'create'])->name('create');
-Route::post('/store', [PortfolioController::class, 'store'])->name('store');
-Route::get('/edit/{id}', [PortfolioController::class, 'edit'])->name('edit'); 
-Route::patch('/update/{id}', [PortfolioController::class, 'update'])->name('update');
-Route::delete('/delete/{id}', [PortfolioController::class, 'destroy'])->name('delete');
+Route::get('/dashboard/portfolio', [PortfolioController::class, 'index'])->name('index.potfolio');
+Route::get('/create', [PortfolioController::class, 'create'])->name('create.portfolio');
+Route::post('/store', [PortfolioController::class, 'store'])->name('store.portfolio');
+Route::get('/edit/{id}', [PortfolioController::class, 'edit'])->name('edit.potrfolio'); 
+Route::patch('/update/{id}', [PortfolioController::class, 'update'])->name('update.portfolio');
+Route::delete('/delete/{id}', [PortfolioController::class, 'destroy'])->name('delete.portfolio');
 
 //Vision & Mission
-Route::get('/dashboard/vismis', [ClientController::class, 'index'])->name('index');
-Route::get('/edit/{id}', [VisionMissionController::class, 'edit'])->name('edit'); 
-Route::patch('/update/{id}', [VisionMissionController::class, 'update'])->name('update');
+Route::get('/dashboard/vismis', [VisionMissionController::class, 'index'])->name('index.VisMiss');
+Route::get('/edit/{id}', [VisionMissionController::class, 'edit'])->name('edit.VisMiss'); 
+Route::patch('/update/{id}', [VisionMissionController::class, 'update'])->name('update.VisMiss');
