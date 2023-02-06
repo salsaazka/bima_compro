@@ -48,7 +48,7 @@ class VisionMissionController extends Controller
             'desc' => $request->desc,
     
         ]);
-       return view('/')->with('success', 'Anda berhasil menambahkan data!');
+       return view('/store')->with('success', 'Anda berhasil menambahkan data!');
     }
 
     /**
