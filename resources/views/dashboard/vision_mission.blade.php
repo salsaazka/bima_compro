@@ -18,7 +18,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('store.client') }}" enctype="multipart/form-data" class="card py-4 px-4">
+                    <form method="POST" action="{{ route('store.VisMiss') }}" enctype="multipart/form-data" class="card py-4 px-4">
                         @csrf
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -33,7 +33,7 @@
                         <div class="mb-3">
                             <h3>Vission & Mission</h3>
                             <label for="exampleFormControlInput1" class="form-label">Title</label>
-                            <input type="text" name="tile" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Input Title">
+                            <input type="text" name="title" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Input Title">
                             <label for="exampleFormControlInput1" class="form-label">Description</label>
                             <input type="text" name="desc" class="form-control mb-3" id="exampleFormControlInput1" placeholder="Input Description">
                         </div>

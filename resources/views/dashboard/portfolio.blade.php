@@ -15,7 +15,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ route('store.client') }}" enctype="multipart/form-data"
+                        <form method="POST" action="{{ route('store.portfolio') }}" enctype="multipart/form-data"
                             class="card py-4 px-4">
                             @csrf
                             @if ($errors->any())
