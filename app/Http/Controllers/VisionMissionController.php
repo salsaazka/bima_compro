@@ -27,7 +27,7 @@ class VisionMissionController extends Controller
      */
     public function create()
     {
-      
+
         // return view('dashboard.vision_mission');
     }
 
@@ -42,12 +42,12 @@ class VisionMissionController extends Controller
         $request->validate([
             'title'=>'required',
             'desc'=> 'required',
-            
+
         ]);
         VisionMission::create([
             'title'=> $request->title,
             'desc' => $request->desc,
-    
+
         ]);
        return view('/store')->with('success', 'Anda berhasil menambahkan data!');
     }
@@ -82,19 +82,19 @@ class VisionMissionController extends Controller
      * @param  \App\Models\VisionMission  $visionMission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'title'=>'required',
             'desc'=> 'required',
-            
+
         ]);
-        VisionMission::where('id', $id)->update([
+        VisionMission::where('id', $request->id)->update([
             'title'=> $request->title,
             'desc' => $request->desc,
-    
+
         ]);
-       return view('/')->with('success', 'Anda berhasil mengedit data!');
+       return redirect()->back()->with('success', 'Anda berhasil mengedit data!');
     }
 
     /**

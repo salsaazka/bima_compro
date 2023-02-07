@@ -34,5 +34,5 @@ Route::delete('/dashboard/portfolio/delete/{id}', [PortfolioController::class, '
 Route::get('/dashboard/vismis', [VisionMissionController::class, 'index'])->name('index.VisMiss');
 //Route::get('/dashboard/vismis/create', [VisionMissionController::class, 'create'])->name('create.VisMiss');
 Route::post('/dashboard/vismis/store', [VisionMissionController::class, 'store'])->name('store.VisMiss');
-Route::get('/dashboard/vismis/edit/{id}', [VisionMissionController::class, 'edit'])->name('edit.VisMiss');
-Route::patch('/dashboard/vismis/update/{id}', [VisionMissionController::class, 'update'])->name('update.VisMiss');
+Route::get('/dashboard/vismis/edit', [VisionMissionController::class, 'edit'])->name('edit.VisMiss');
+Route::post('/dashboard/vismis/update', [VisionMissionController::class, 'update'])->name('update.VisMiss');
