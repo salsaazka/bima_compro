@@ -14,7 +14,7 @@ Route::get('/', function () {
 //Client
 Route::get('/dashboard/client', [ClientController::class, 'index'])->name('index');
 Route::post('/dashboard/client/store', [ClientController::class, 'store'])->name('store.client');
-Route::delete('/dashboard/client//delete/{id}', [ClientController::class, 'destroy'])->name('delete.client');
+Route::get('/dashboard/client/delete/{id}', [ClientController::class, 'destroy'])->name('delete.client');
 
 //Contact Us
 Route::get('/dashboard/contact', [ContactController::class, 'index'])->name('index.contact');
