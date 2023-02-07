@@ -16,7 +16,8 @@ class VisionMissionController extends Controller
      */
     public function index()
     {
-       return view('dashboard.vision_mission');
+        $visionMission = VisionMission::all();
+       return view('dashboard.vision_mission', compact('visionMission'));
     }
 
     /**
@@ -26,8 +27,8 @@ class VisionMissionController extends Controller
      */
     public function create()
     {
-        $visionMission = VisionMission::all();
-        return view('dashboard.vision_mission', compact('visionMission'));
+      
+        // return view('dashboard.vision_mission');
     }
 
     /**

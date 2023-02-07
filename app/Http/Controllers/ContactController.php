@@ -16,7 +16,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('dashboard.contact');
+        $contactUs = Contact::all();
+        return view('dashboard.contact', compact('contactUs'));
     }
 
     /**
@@ -26,8 +27,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        $contactUs = Contact::all();
-        return view('dashboard.contact', compact('contactUs'));
+        
+        // return view('dashboard.contact', compact('contactUs'));
     }
 
     /**
@@ -50,7 +51,7 @@ class ContactController extends Controller
             'address' => $request->address,
             'web' => $request->web,
         ]);
-        return view('/')->with('success', 'Anda berhasil mengedit data!');
+        return redirect()->back()->with('success', 'Anda berhasil mengedit data!');
     }
 
     /**

@@ -16,8 +16,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-       
-        return view('dashboard.client');
+        $clients = Client::all();
+        return view('dashboard.client', compact('clients'));
     }
 
     /**
@@ -25,11 +25,11 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $clients = Client::all();
-        return view('dashboard.client', compact('clients'));
-    }
+
+    // public function create()
+    // {
+
+    // }
 
     /**
      * Store a newly created resource in storage.

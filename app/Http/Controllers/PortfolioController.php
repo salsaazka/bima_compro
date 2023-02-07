@@ -16,7 +16,8 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        return view('dashboard.portfolio');
+        $portfolio = Portfolio::all();
+        return view('dashboard.portfolio', compact('portfolio'));
     }
 
     /**
@@ -26,8 +27,8 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        $portfolio = Portfolio::all();
-        return view('dashboard.porfolio', compact('portfolio'));
+       
+        // return view('dashboard.porfolio');
     }
 
     /**

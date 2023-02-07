@@ -13,18 +13,18 @@ Route::get('/', function () {
 
 //Client
 Route::get('/dashboard/client', [ClientController::class, 'index'])->name('index');
-Route::get('/dashboard/client/create', [ClientController::class, 'create'])->name('client.create');
-Route::post('/dashboard/client/store', [ClientController::class, 'store'])->name('client.store');
-Route::delete('/dashboard/client//delete/{id}', [ClientController::class, 'destroy'])->name('client.delete');
+Route::post('/dashboard/client/store', [ClientController::class, 'store'])->name('store.client');
+Route::delete('/dashboard/client//delete/{id}', [ClientController::class, 'destroy'])->name('delete.client');
 
 //Contact Us
 Route::get('/dashboard/contact', [ContactController::class, 'index'])->name('index.contact');
+Route::post('/dashboard/contact/store', [ContactController::class, 'store'])->name('store.contact');
 Route::get('/dashboard/contact/edit/{id}', [ContactController::class, 'edit'])->name('edit.contact');
 Route::patch('/dashboard/contact/update/{id}', [ContactController::class, 'update'])->name('update.contact');
 
 //Portfolio
 Route::get('/dashboard/portfolio', [PortfolioController::class, 'index'])->name('index.portfolio');
-Route::get('/dashboard/portfolio/create', [PortfolioController::class, 'create'])->name('create.portfolio');
+// Route::get('/dashboard/portfolio/create', [PortfolioController::class, 'create'])->name('create.portfolio');
 Route::post('/dashboard/portfolio/store', [PortfolioController::class, 'store'])->name('store.portfolio');
 Route::get('/dashboard/portfolio/edit/{id}', [PortfolioController::class, 'edit'])->name('edit.portfolio');
 Route::patch('/dashboard/portfolio/update/{id}', [PortfolioController::class, 'update'])->name('update.portfolio');
@@ -32,5 +32,7 @@ Route::delete('/dashboard/portfolio/delete/{id}', [PortfolioController::class, '
 
 //Vision & Mission
 Route::get('/dashboard/vismis', [VisionMissionController::class, 'index'])->name('index.VisMiss');
+//Route::get('/dashboard/vismis/create', [VisionMissionController::class, 'create'])->name('create.VisMiss');
+Route::post('/dashboard/vismis/store', [VisionMissionController::class, 'store'])->name('store.VisMiss');
 Route::get('/dashboard/vismis/edit/{id}', [VisionMissionController::class, 'edit'])->name('edit.VisMiss');
 Route::patch('/dashboard/vismis/update/{id}', [VisionMissionController::class, 'update'])->name('update.VisMiss');
