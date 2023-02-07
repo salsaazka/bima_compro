@@ -69,7 +69,7 @@
                                 <div class="ml-auto">
                                     <button type="submit" class="fa-sharp fa-solid fa-delete-left"
                                         style="border:none;  background:none;"> </button>
-                                    <a class="btn btn-danger deleteee">Hapus</a>
+                                    <a class="btn btn-danger deleteee" href="{{ route('delete.client', ['id' => $client['id']]) }}">Hapus</a>
                                 </div>
                             </td>
                         </tr>
@@ -99,7 +99,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "{{ route('delete.client', ['id' => $client->id]) }}"
+                        window.location = "dashboard/client/delete/"
                         swal("Data Berhasil Dihapus", {
                             icon: "success",
                         });
