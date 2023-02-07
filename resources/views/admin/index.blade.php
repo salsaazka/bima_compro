@@ -37,7 +37,7 @@
                 <!-- <a href="./index.html" class="sidebar-item" onclick="toggleActive(this)"> -->
                 <!-- <img src="./assets/img/global/grid.svg" alt=""> -->
 
-                <a href="/dashboard/client" class="sidebar-item" onclick="toggleActive(this)">
+                <a href="/dashboard/client" class="sidebar-item {{ Route::currentRouteName() === 'index' ? 'active' : '' }}" onclick="toggleActive(this)">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 14H14V21H21V14Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M10 14H3V21H10V14Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -167,53 +167,8 @@
             </div>
 
             <div class="content">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="content-title">Statistics</h2>
-                        <h5 class="content-desc mb-4">Your team powers</h5>
-                    </div>
 
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="statistics-card simple">
-
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex flex-column justify-content-around align-items-start employee-stat">
-                                    <h5 class="content-desc">In Total</h5>
-
-                                    <h3 class="statistics-value">425,000</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="statistics-card simple">
-
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex flex-column justify-content-around align-items-start employee-stat">
-                                    <h5 class="content-desc">Active</h5>
-
-                                    <h3 class="statistics-value">205,399</h3>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="statistics-card simple">
-
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex flex-column justify-content-around align-items-start employee-stat">
-                                    <h5 class="content-desc">Inactive</h5>
-
-                                    <h3 class="statistics-value">142,593</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                @yield('content')
 
             </div>
         </div>
