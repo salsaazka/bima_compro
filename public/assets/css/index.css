@@ -2,7 +2,7 @@
 html, body {
   font-family: "Poppins";
   font-style: normal;
-  background-color: #F8F8FA;
+  background-color: #f5f5ff;
   overflow-x: hidden;
   position: relative;
 }
@@ -454,4 +454,202 @@ aside #toggle-navbar {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card{
+    border: none !important;
+    border-radius: 10px !important;
+}
+
+
+
+/*Component Table*/
+.wrapperTable {
+    padding: 2rem 0;
+}
+
+.wrapperTable .pagination {
+    margin-top: 20rem;
+}
+
+.wrapperTable .pagination .paginate_button.active .page-link {
+    background: #e80102 !important;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.wrapperTable .pagination .paginate_button .page-link {
+    border: none;
+    background: transparent !important;
+    color: #535353;
+    padding: .2rem .8rem;
+    font-weight: 300;
+}
+
+.wrapperTable .tables {
+    border-spacing: 0 10px !important;
+    width: 100%;
+    max-width: 100%;
+}
+
+.wrapperTable .tables thead tr {
+    box-shadow: 0px 36px 80px rgba(0, 0, 0, 0.02), 0px 4.50776px 10.0172px rgba(0, 0, 0, 0.04);
+}
+
+.wrapperTable .tables thead tr th {
+    color: #535353;
+    font-weight: 300;
+    vertical-align: middle;
+    padding: .8rem;
+    background-color: #fff;
+}
+
+.wrapperTable .tables thead tr th:first-child {
+    -moz-border-radius: 10px 0px 0px 10px !important;
+    -webkit-border-radius: 10px 0px 0px 10px !important;
+}
+
+.wrapperTable .tables thead tr th:last-child {
+    -webkit-border-radius: 0px 10px 10px 0px !important;
+    -moz-border-radius: 0px 10px 10px 0px !important;
+}
+
+.wrapperTable .tables tbody tr:last-child {
+    box-shadow: 0px 36px 80px rgba(0, 0, 0, 0.02), 0px 4.50776px 10.0172px rgba(0, 0, 0, 0.04);
+}
+
+.wrapperTable .tables tbody tr td {
+    color: #535353;
+    font-weight: 400;
+    vertical-align: middle;
+    height: 100%;
+    padding: .8rem;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.wrapperTable .tables tbody tr td:first-child {
+    -moz-border-radius: 10px 0px 0px 10px !important;
+    -webkit-border-radius: 10px 0px 0px 10px !important;
+}
+
+.wrapperTable .tables tbody tr td:last-child {
+    -webkit-border-radius: 0px 10px 10px 0px !important;
+    -moz-border-radius: 0px 10px 10px 0px !important;
+}
+
+.wrapperTable .tables tbody tr td .code .numberCode {
+    color: #e80102;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.wrapperTable .tables tbody tr td .code .numberCode:hover {
+    color: #259963;
+    transition: .3s;
+}
+
+.wrapperTable .tables tbody tr td .detailName {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapperTable .tables tbody tr td .detailName .name {
+    font-weight: 600;
+}
+
+.wrapperTable .tables tbody tr td .buttonAction {
+    display: flex;
+}
+
+.wrapperTable .tables tbody tr td .buttonAction .buttons {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+    border: none;
+    border-radius: 6px;
+    transition: .2s;
+}
+
+.wrapperTable .tables tbody tr td .buttonAction .success {
+    margin-right: .5rem;
+    background: #e80102;
+}
+
+.wrapperTable .tables tbody tr td .buttonAction .success:hover {
+    background: #259963;
+    transition: .2s ease-in-out;
+}
+
+.wrapperTable .tables tbody tr td .buttonAction .danger {
+    background: #DC3545;
+}
+
+.wrapperTable .tables tbody tr td .buttonAction .danger:hover {
+    background: #b52b39;
+    transition: .2s ease-in-out;
+}
+
+.wrapperTable .tables tbody tr td .address {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+
+.wrapperTable .tables tbody tr td .status {
+    border-radius: 5px;
+    padding: .5rem .8rem;
+    width: fit-content;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    font-size: 12px;
+}
+
+.wrapperTable .tables tbody tr td .status.status-warning {
+    background-color: #FFC107;
+}
+
+.wrapperTable .tables tbody tr td .status.status-primary {
+    background-color: #e80102;
+}
+
+.wrapperTable .tables tbody tr td .status.status-danger {
+    background-color: #DC3545;
+}
+
+@media screen and (max-width: 768px) {
+    .dataTables_length {
+        margin-bottom: .5rem;
+        font-size: 12px;
+    }
+
+    .dataTables_wrapper .dataTables_filter {
+        font-size: 12px;
+    }
+
+    .form-select,
+    .form-control {
+        font-size: 12px;
+    }
+
+    .wrapperTable .tables thead tr th {
+        font-size: 14px;
+    }
+
+    .wrapperTable .tables tbody tr td {
+        font-size: 14px;
+    }
+}
+
+table.dataTable thead th, table.dataTable thead td{
+    border-bottom: none;
+}
+
+table.dataTable.no-footer{
+    border-bottom: none;
 }
