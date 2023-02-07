@@ -27,7 +27,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        
+
         // return view('dashboard.contact', compact('contactUs'));
     }
 
@@ -84,7 +84,7 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'email'=>'required',
@@ -92,13 +92,13 @@ class ContactController extends Controller
             'address'=> 'required',
             'web' => 'required'
         ]);
-        Contact::where('id', $id)->update([
+        Contact::where('id', $request->id)->update([
             'email'=> $request->email,
             'no_telp' => $request->no_telp,
             'address' => $request->address,
             'web' => $request->web,
         ]);
-        return view('/')->with('success', 'Anda berhasil mengedit data!');
+        return redirect()->back()->with('success', 'Anda berhasil mengedit data!');
     }
 
     /**
