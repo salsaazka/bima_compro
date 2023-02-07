@@ -14,13 +14,13 @@ Route::get('/', function () {
 //Client
 Route::get('/dashboard/client', [ClientController::class, 'index'])->name('index');
 Route::post('/dashboard/client/store', [ClientController::class, 'store'])->name('store.client');
-Route::get('/dashboard/client/delete/{id}', [ClientController::class, 'destroy'])->name('delete.client');
+Route::get('/dashboard/client/delete/', [ClientController::class, 'destroy'])->name('delete.client');
 
 //Contact Us
 Route::get('/dashboard/contact', [ContactController::class, 'index'])->name('index.contact');
 Route::post('/dashboard/contact/store', [ContactController::class, 'store'])->name('store.contact');
 Route::get('/dashboard/contact/edit/{id}', [ContactController::class, 'edit'])->name('edit.contact');
-Route::patch('/dashboard/contact/update/{id}', [ContactController::class, 'update'])->name('update.contact');
+Route::post('/dashboard/contact/update/', [ContactController::class, 'update'])->name('update.contact');
 
 //Portfolio
 Route::get('/dashboard/portfolio', [PortfolioController::class, 'index'])->name('index.portfolio');

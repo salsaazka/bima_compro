@@ -99,7 +99,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "{{ route('delete.client', ['id' => $clients->id]) }}"
+                        window.location = "{{ route('delete.client', ['id' => $client->id]) }}"
                         swal("Data Berhasil Dihapus", {
                             icon: "success",
                         });

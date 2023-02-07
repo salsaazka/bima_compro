@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="d-flex justify-content-end">
+    {{-- <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah
         </button>
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="">
         <div class="wrapperTable table-responsive">
             <table id="userTable" class="tables" style="width:100%">
@@ -83,7 +83,7 @@
                                         data-bs-target="#exampleModal" data-id="{{ $contact->id }}"
                                         data-email="{{ $contact->email }}"
                                         data-no_telp="{{ $contact->no_telp }}"
-                                        data-address="{{ $contact->address }}" 
+                                        data-address="{{ $contact->address }}"
                                         data-web="{{ $contact->web }}">Edit</button>
                                 </div>
                             </td>
