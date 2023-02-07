@@ -65,13 +65,11 @@
                             <td>{{ $client['name'] }}</td>
                             <td>{{ $client['image'] }}</td>
                             <td>
-    
-                                <div class="ml-auto"> 
-                                        <form action="{{ route('delete.client', $client['id']) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                        <button type="submit" class="fa-sharp fa-solid fa-delete-left" style="border:none;  background:none;"> </button>
-                                      </form>
+
+                                <div class="ml-auto">
+                                    <button type="submit" class="fa-sharp fa-solid fa-delete-left"
+                                        style="border:none;  background:none;"> </button>
+                                    <a class="btn btn-danger deleteee">Hapus</a>
                                 </div>
                             </td>
                         </tr>
@@ -90,5 +88,25 @@
                 "bSort": false,
             });
         });
+
+        $('.deleteee').click(function() {
+            swal({
+                    title: "Yakin?",
+                    text: "Tekan ok untuk hapus, cancel untuk batal!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "{{ route('delete.client', ['id' => $client->id]) }}"
+                        swal("Data Berhasil Dihapus", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Data Batal Dihapus");
+                    }
+                });
+        })
     </script>
 @endsection

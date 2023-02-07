@@ -64,13 +64,9 @@
                             <td>{{ $vismis['desc'] }}</td>
                             <td>
                                 <div class="ml-auto">
-                                    <form action="{{ route('update.VisMiss', $vismis->id) }}" method="POST">
-                                        @method('PATCH')
-                                        @csrf
-                                        <button type="button" class="btn btn-primary show-edit-modal" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-primary show-edit-modal" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" data-id="{{ $vismis->id }}"
                                             data-title="{{ $vismis->title }}" data-desc="{{ $vismis->desc }}">Edit</button>
-                                    </form>
                                 </div>
                             </td>
                         </tr>
