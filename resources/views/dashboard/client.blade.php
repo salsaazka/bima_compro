@@ -12,7 +12,7 @@
         </li>
     </ul>
          <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-            <form method="POST" action="{{ route('store.client') }}"  enctype="multipart/form-data" class="card py-4 px-4">
+            <form method="POST" action="{{ route('client.store') }}"  enctype="multipart/form-data" class="card py-4 px-4">
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-danger">

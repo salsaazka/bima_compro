@@ -16,6 +16,7 @@ class ClientController extends Controller
      */
     public function index()
     {
+       
         return view('dashboard.client');
     }
 
@@ -61,7 +62,7 @@ class ClientController extends Controller
             'name'=> $request->name,
             'image' => $uploaded,
         ]);
-         return redirect()->route('store.client')->with('success', 'Anda berhasil menambahkan data!');
+         return redirect()->back()->with('success', 'Anda berhasil menambahkan data!');
 
     }
 
