@@ -83,7 +83,7 @@
                                         data-bs-target="#exampleModal" data-id="{{ $contact->id }}"
                                         data-email="{{ $contact->email }}"
                                         data-no_telp="{{ $contact->no_telp }}"
-                                        data-address="{{ $contact->address }}"
+                                        data-address="{{ $contact->address }}" 
                                         data-web="{{ $contact->web }}">Edit</button>
                                 </div>
                             </td>

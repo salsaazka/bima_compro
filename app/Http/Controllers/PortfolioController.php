@@ -83,8 +83,8 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio)
     {
-        $portfolio= Portfolio::where('id', $id)->first();
-        return view('/dashboard/portfolio', compact('portfolio'));
+        // $portfolio= Portfolio::where('id', $id)->first();
+        // return view('/dashboard/portfolio', compact('portfolio'));
     }
 
     /**
@@ -94,19 +94,33 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'image'=>'required',
             'desc'=> 'required',
             
         ]);
-        Portfolio::where('id', $id)->update([
-            'image'=> $request->image,
+
+        $image = $request->file('image');
+        $imgName = time().rand().'.'.$image->extension();
+
+        if(!file_exists(public_path('/assets/img/data/'.$image->getClientOriginalName()))){
+            //set untuk menyimpan file nya
+            $dPath = public_path('/assets/img/data/');
+            //memindahkan file yang diupload ke directory yang telah ditentukan
+            $image->move($dPath, $imgName);
+            $uploaded = $imgName;
+        }else{
+            $uploaded = $image->getClientOriginalName();
+        }
+        
+        Portfolio::where('id', $request->id)->update([
+            'image'=> $uploaded,
             'desc' => $request->desc,
     
         ]);
-        return view('/')->with('success', 'Anda berhasil mengupdate data');
+        return redirect()->back()->with('success', 'Anda berhasil mengupdate data');
       
     }
 

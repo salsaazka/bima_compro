@@ -1,5 +1,9 @@
 @extends('admin/index')
 
+@section('title')
+Portfolio
+@endsection
+
 @section('content')
 
     <div class="d-flex justify-content-end">
@@ -63,15 +67,14 @@
                             <td>
                                 <div class="ml-auto">
                                     <button type="button" class="btn btn-primary show-edit-modal" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" data-id="{{ $i->id }}"
+                                            data-bs-target="#exampleModal1" data-id="{{ $i->id }}"
                                             data-desc="{{ $i->desc }}" data-image="{{ $i->image }}">Edit</button>
-                                
-                                            redirec\
-                                        </div>
 
-                                <div class="ml-auto">
-                                    x
+                                    <button type="submit" class="fa-sharp fa-solid fa-delete-left"
+                                        style="border:none;  background:none;"> </button>
+                                        <a class="btn btn-danger deleteee">Hapus</a>
                                 </div>
+
                             </td>
                         </tr>
                     @endforeach
@@ -81,7 +84,7 @@
 
 
         {{-- Modal --}}
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -129,5 +132,25 @@
                 $('#portfolio-id').val($(this).data('id'));
             });
         });
+
+        $('.deleteee').click(function() {
+            swal({
+                    title: "Yakin?",
+                    text: "Tekan ok untuk hapus, cancel untuk batal!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "{{ route('delete.portfolio', ['id' => $i->id]) }}"
+                        swal("Data Berhasil Dihapus", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Data Batal Dihapus");
+                    }
+                });
+        })
     </script>
 @endsection
