@@ -62,12 +62,15 @@
                             <td>{{ $i['image'] }}</td>
                             <td>
                                 <div class="ml-auto">
-                                    <form action="{{ route('update.portfolio', $i->id) }}" method="POST">
-                                        @method('PATCH')
-                                        @csrf
-                                        <button type="submit" class="fa-sharp fa-solid fa-arrow-rotate-left"
-                                            style="border: none; background:none;"></button>
-                                    </form>
+                                    <button type="button" class="btn btn-primary show-edit-modal" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal" data-id="{{ $i->id }}"
+                                            data-desc="{{ $i->desc }}" data-image="{{ $i->image }}">Edit</button>
+                                
+                                            redirec\
+                                        </div>
+
+                                <div class="ml-auto">
+                                    x
                                 </div>
                             </td>
                         </tr>
@@ -75,6 +78,38 @@
                 </tbody>
             </table>
         </div>
+
+
+        {{-- Modal --}}
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{!! url('dashboard/portfolio/update') !!}" method="post">
+                            <input type="hidden" id="portfolio-id" name="id">
+                            @csrf
+                            <label for="misi">Desc</label>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" placeholder="Desc" id="descEdit" style="height: 100px"
+                                    name="desc"></textarea>
+                            </div>
+                            <label for="visi">Image</label>
+                            <div class="form-floating mb-3">
+                                 <input type="file" name="image" class="form-control mb-3" id="imageEdit">
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- End Modal --}}
     </div>
 
 @endsection
@@ -84,6 +119,14 @@
             $('#userTable').DataTable({
                 "info": false,
                 "bSort": false,
+            });
+        });
+
+        $('.show-edit-modal').each(function() {
+            $(this).click(function() {
+                $('#descEdit').val($(this).data('desc'));
+                $('#imageEdit').val($(this).data('image'));
+                $('#portfolio-id').val($(this).data('id'));
             });
         });
     </script>
