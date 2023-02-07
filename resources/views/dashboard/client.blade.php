@@ -65,13 +65,13 @@
                             <td>{{ $client['name'] }}</td>
                             <td>{{ $client['image'] }}</td>
                             <td>
-                                <div class="ml-auto">
-                                    {{-- <form action="{{ route('client.update', $client->id) }}" method="POST">
-                                        @method('PATCH')
-                                        @csrf
-                                        <button type="submit" class="fa-sharp fa-solid fa-arrow-rotate-left"
-                                            style="border: none; background:none;"></button>
-                                    </form> --}}
+    
+                                <div class="ml-auto"> 
+                                        <form action="{{ route('delete.client', $client['id']) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                        <button type="submit" class="fa-sharp fa-solid fa-delete-left" style="border:none;  background:none;"> </button>
+                                      </form>
                                 </div>
                             </td>
                         </tr>
