@@ -1,5 +1,9 @@
 @extends('admin/index')
 
+@section('title')
+    Client
+@endsection
+
 @section('content')
 
     <div class="d-flex justify-content-end">

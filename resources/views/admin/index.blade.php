@@ -37,7 +37,7 @@
                 <a href="#" class="sidebar-logo">
                     <div class="d-flex justify-content-start align-items-center">
                         <img src="{{ url('assets/img/global/logo.svg') }}" alt="">
-                        <span>PowerHuman</span>
+                        <span>Admin Bima</span>
                     </div>
 
                     <button id="toggle-navbar" onclick="toggleNavbar()">
@@ -55,6 +55,21 @@
                     onclick="toggleActive(this)">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+                            stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+                            stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+                            stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
+                            stroke="#ABB3C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    {{-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 14H14V21H21V14Z" stroke="white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                         <path d="M10 14H3V21H10V14Z" stroke="white" stroke-width="2" stroke-linecap="round"
@@ -63,12 +78,12 @@
                             stroke-linejoin="round" />
                         <path d="M10 3H3V10H10V3Z" stroke="white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
-                    </svg>
+                    </svg> --}}
 
                     <span>Client</span>
                 </a>
 
-                <a href="/dashboard/contact" class="sidebar-item active">
+                <a href="/dashboard/contact" class="sidebar-item {{ Route::currentRouteName() === 'index.contact' ? 'active' : '' }}">
                     <!-- <img src="./assets/img/global/users.svg" alt=""> -->
 
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -216,22 +231,12 @@
                         <button id="toggle-navbar" onclick="toggleNavbar()">
                             <img src="{{ url('assets/img/global/burger.svg') }}" class="mb-2" alt="">
                         </button>
-                        <h2 class="nav-title">Employees</h2>
+                        <h2 class="nav-title">@yield('title')</h2>
                     </div>
                     <button class="btn-notif d-block d-md-none"><img
                             src="{{ url('assets/img/global/bell.svg') }}" alt=""></button>
                 </div>
 
-                <div class="d-flex justify-content-between align-items-center nav-input-container">
-                    <div class="nav-input-group">
-                        <input type="text" class="nav-input" placeholder="Search people, team, project">
-                        <button class="btn-nav-input"><img src="{{ url('assets/img/global/search.svg') }}"
-                                alt=""></button>
-                    </div>
-
-                    <button class="btn-notif d-none d-md-block"><img src="{{ url('assets/img/global/bell.svg') }}"
-                            alt=""></button>
-                </div>
             </div>
 
             <div class="content">
