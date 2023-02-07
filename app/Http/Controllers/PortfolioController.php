@@ -41,7 +41,7 @@ class PortfolioController extends Controller
     {
         $request->validate([
             'image'=> 'required',
-            'address'=> 'required'
+            'desc'=> 'required'
 
         ]);
         $image = $request->file('image');
@@ -58,10 +58,10 @@ class PortfolioController extends Controller
         }
 
         Portfolio::create([
-            'image' => $request->image,
-            'address' => $uploaded,
+            'desc' => $request->desc,
+            'image' => $uploaded,
         ]);
-        return view('/')->with('success', 'Anda berhasil menambahkan data!');
+        return redirect()->back()->with('success', 'Anda berhasil menambahkan data!');
     }
 
     /**
