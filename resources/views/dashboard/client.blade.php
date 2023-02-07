@@ -70,7 +70,7 @@
                                         <form action="{{ route('delete.client', $client['id']) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                        <button type="submit" class="fa-sharp fa-solid fa-delete-left" style="border:none;  background:none;"> </button>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
                                       </form>
                                 </div>
                             </td>

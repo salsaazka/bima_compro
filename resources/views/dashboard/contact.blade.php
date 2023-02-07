@@ -79,18 +79,57 @@
                             <td>{{ $contact['web'] }}</td>
                             <td>
                                 <div class="ml-auto">
-                                    <form action="{{ route('update.contact', $contact->id) }}" method="POST">
-                                        @method('PATCH')
-                                        @csrf
-                                        <button type="submit" class="fa-sharp fa-solid fa-arrow-rotate-left"
-                                            style="border: none; background:none;"></button>
-                                    </form>
+                                        <button type="button" class="btn btn-primary show-edit-modal" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" data-id="{{ $contact->id }}"
+                                        data-email="{{ $contact->email }}"
+                                        data-no_telp="{{ $contact->no_telp }}"
+                                        data-address="{{ $contact->address }}" 
+                                        data-web="{{ $contact->web }}">Edit</button>
                                 </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+        </div>
+
+
+    {{-- Modal --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{!! url('dashboard/contact/update') !!}" method="post">
+                        <input type="hidden" id="contact-id" name="id">
+                        @csrf
+                        <label for="email">Email</label>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" placeholder="" id="emailEdit" name="email">
+                        </div>
+                        <label for="no telp">No Telp</label>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" placeholder="No Telp" id="telpEdit" style="height: 100px"
+                                name="no_telp">
+                        </div>
+                        <label for="address">Address</label>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" placeholder="Address" id="addressEdit" style="height: 100px"
+                                name="address"></textarea>
+                        </div>
+                        <label for="web">Website</label>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" placeholder="Website" id="webEdit" style="height: 100px"
+                                name="web">
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
         </div>
     </div>
 
@@ -101,6 +140,16 @@
             $('#userTable').DataTable({
                 "info": false,
                 "bSort": false,
+            });
+        });
+
+        $('.show-edit-modal').each(function() {
+            $(this).click(function() {
+                $('#emailEdit').val($(this).data('email'));
+                $('#addressEdit').val($(this).data('address'));
+                $('#webEdit').val($(this).data('web'));
+                $('#telpEdit').val($(this).data('no_telp'));
+                $('#contact-id').val($(this).data('id'));
             });
         });
     </script>

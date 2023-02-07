@@ -106,9 +106,9 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy($id)
     {
         Client::where('id', $id)->delete();
-        return redirect()->route('delete')->with('delete', 'Berhasil menghapus data!');
+        return redirect()->route('delete.client')->with('delete', 'Berhasil menghapus data!');
     }
 }
