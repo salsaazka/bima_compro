@@ -28,7 +28,7 @@ Route::get('/dashboard/portfolio', [PortfolioController::class, 'index'])->name(
 Route::post('/dashboard/portfolio/store', [PortfolioController::class, 'store'])->name('store.portfolio');
 Route::get('/dashboard/portfolio/edit/{id}', [PortfolioController::class, 'edit'])->name('edit.portfolio');
 Route::post('/dashboard/portfolio/update/', [PortfolioController::class, 'update'])->name('update.portfolio');
-Route::delete('/dashboard/portfolio/delete/{id}', [PortfolioController::class, 'destroy'])->name('delete.portfolio');
+Route::get('/dashboard/portfolio/delete', [PortfolioController::class, 'destroy'])->name('delete.portfolio');
 
 //Vision & Mission
 Route::get('/dashboard/vismis', [VisionMissionController::class, 'index'])->name('index.VisMiss');

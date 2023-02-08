@@ -66,13 +66,11 @@ Portfolio
                             <td>{{ $i['image'] }}</td>
                             <td>
                                 <div class="ml-auto">
-                                    <button type="button" class="btn btn-primary show-edit-modal" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-outline-primary show-edit-modal" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal1" data-id="{{ $i->id }}"
                                             data-desc="{{ $i->desc }}" data-image="{{ $i->image }}">Edit</button>
-
-                                    <button type="submit" class="fa-sharp fa-solid fa-delete-left"
-                                        style="border:none;  background:none;"> </button>
-                                        <a class="btn btn-danger deleteee">Hapus</a>
+                                            
+                                        <a class="btn btn-outline-danger deleteee" href="{{ route('delete.portfolio', ['id' => $i['id']]) }}">Hapus</a>
                                 </div>
 
                             </td>
@@ -133,24 +131,24 @@ Portfolio
             });
         });
 
-        $('.deleteee').click(function() {
-            swal({
-                    title: "Yakin?",
-                    text: "Tekan ok untuk hapus, cancel untuk batal!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        window.location = "{{ route('delete.portfolio', ['id' => $i->id]) }}"
-                        swal("Data Berhasil Dihapus", {
-                            icon: "success",
-                        });
-                    } else {
-                        swal("Data Batal Dihapus");
-                    }
-                });
-        })
+        // $('.deleteee').click(function() {
+        //     swal({
+        //             title: "Yakin?",
+        //             text: "Tekan ok untuk hapus, cancel untuk batal!",
+        //             icon: "warning",
+        //             buttons: true,
+        //             dangerMode: true,
+        //         })
+        //         .then((willDelete) => {
+        //             if (willDelete) {
+        //                 window.location = "dashboard/portfolio/delete/"
+        //                 swal("Data Berhasil Dihapus", {
+        //                     icon: "success",
+        //                 });
+        //             } else {
+        //                 swal("Data Batal Dihapus");
+        //             }
+        //         });
+        // })
     </script>
 @endsection

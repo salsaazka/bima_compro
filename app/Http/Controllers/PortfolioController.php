@@ -130,9 +130,9 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        Portfolio::where('id', $id)->delete();
-        return  redirect()->back()->with('delete', 'Berhasil menghapus data!');
+        Portfolio::where('id', $request->id)->delete();
+        return redirect()->back()->with('delete', 'Berhasil menghapus data!');
     }
 }

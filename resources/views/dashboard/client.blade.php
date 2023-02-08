@@ -67,9 +67,7 @@
                             <td>
 
                                 <div class="ml-auto">
-                                    <button type="submit" class="fa-sharp fa-solid fa-delete-left"
-                                        style="border:none;  background:none;"> </button>
-                                    <a class="btn btn-danger deleteee" href="{{ route('delete.client', ['id' => $client['id']]) }}">Hapus</a>
+                                    <a class="btn btn-outline-danger deleteee" href="{{ route('delete.client', ['id' => $client['id']]) }}">Hapus</a>
                                 </div>
                             </td>
                         </tr>

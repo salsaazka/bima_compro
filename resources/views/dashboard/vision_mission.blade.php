@@ -64,7 +64,7 @@
                             <td>{{ $vismis['desc'] }}</td>
                             <td>
                                 <div class="ml-auto">
-                                    <button type="button" class="btn btn-primary show-edit-modal" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-outline-primary show-edit-modal" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" data-id="{{ $vismis->id }}"
                                             data-title="{{ $vismis->title }}" data-desc="{{ $vismis->desc }}">Edit</button>
                                 </div>
