@@ -5,7 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\VisionMissionController;
-
+use App\Http\Controllers\RegistrationController;
 
 Route::get('/', function () {
     return view('admin.index');
@@ -15,6 +15,12 @@ Route::get('/', function () {
 Route::get('/dashboard/client', [ClientController::class, 'index'])->name('index');
 Route::post('/dashboard/client/store', [ClientController::class, 'store'])->name('store.client');
 Route::get('/dashboard/client/delete', [ClientController::class, 'destroy'])->name('delete.client');
+
+//auth
+Route::get('/login', [RegistrationController::class, 'login'])->name('login');
+Route::post('/auth/login', [RegistrationController::class, 'auth'])->name('login.auth');
+Route::get('/auth/register', [RegistrationController::class, 'register'])->name('register');
+Route::post('/register', [RegistrationController::class, 'inputRegister'])->name('register.post');
 
 //Contact Us
 Route::get('/dashboard/contact', [ContactController::class, 'index'])->name('index.contact');
