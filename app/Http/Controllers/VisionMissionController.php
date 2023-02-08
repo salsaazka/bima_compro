@@ -94,7 +94,7 @@ class VisionMissionController extends Controller
             'desc' => $request->desc,
 
         ]);
-       return redirect()->back()->with('success', 'Anda berhasil mengedit data!');
+       return redirect()->back()->with('successUp', 'Anda berhasil mengedit data!');
     }
 
     /**

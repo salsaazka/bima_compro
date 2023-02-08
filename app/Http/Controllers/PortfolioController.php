@@ -120,7 +120,7 @@ class PortfolioController extends Controller
             'desc' => $request->desc,
     
         ]);
-        return redirect()->back()->with('success', 'Anda berhasil mengupdate data');
+        return redirect()->back()->with('successUp', 'Anda berhasil mengupdate data');
       
     }
 

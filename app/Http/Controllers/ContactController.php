@@ -73,8 +73,8 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        $contactUs= Contact::where('id', $id)->first();
-        return view('/dashboard/contact', compact('contactUs'));
+        // $contactUs= Contact::where('id', $id)->first();
+        // return view('/dashboard/contact', compact('contactUs'));
     }
 
     /**
@@ -98,7 +98,7 @@ class ContactController extends Controller
             'address' => $request->address,
             'web' => $request->web,
         ]);
-        return redirect()->back()->with('success', 'Anda berhasil mengedit data!');
+        return redirect()->back()->with('successUp', 'Anda berhasil mengedit data!');
     }
 
     /**

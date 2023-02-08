@@ -6,6 +6,24 @@ Portfolio
 
 @section('content')
 
+@if (Session::get('success'))
+<div class="alert alert-success w-100">
+   {{ Session::get('success') }}
+</div>
+@endif
+
+@if (Session::get('successUp'))
+<div class="alert alert-primary w-100">
+   {{ Session::get('successUp') }}
+</div>
+@endif
+
+@if (Session::get('delete'))
+<div class="alert alert-danger w-100">
+   {{ Session::get('delete') }}
+</div>
+@endif
+
     <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah
@@ -69,7 +87,7 @@ Portfolio
                                     <button type="button" class="btn btn-outline-primary show-edit-modal" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal1" data-id="{{ $i->id }}"
                                             data-desc="{{ $i->desc }}" data-image="{{ $i->image }}">Edit</button>
-                                            
+
                                         <a class="btn btn-outline-danger deleteee" href="{{ route('delete.portfolio', ['id' => $i['id']]) }}">Hapus</a>
                                 </div>
 
