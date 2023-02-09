@@ -1,28 +1,28 @@
 @extends('admin/index')
 
 @section('title')
-Portfolio
+    Portfolio
 @endsection
 
 @section('content')
 
-@if (Session::get('success'))
-<div class="alert alert-success w-100">
-   {{ Session::get('success') }}
-</div>
-@endif
+    @if (Session::get('success'))
+        <div class="alert alert-success w-100">
+            {{ Session::get('success') }}
+        </div>
+    @endif
 
-@if (Session::get('successUp'))
-<div class="alert alert-primary w-100">
-   {{ Session::get('successUp') }}
-</div>
-@endif
+    @if (Session::get('successUp'))
+        <div class="alert alert-primary w-100">
+            {{ Session::get('successUp') }}
+        </div>
+    @endif
 
-@if (Session::get('delete'))
-<div class="alert alert-danger w-100">
-   {{ Session::get('delete') }}
-</div>
-@endif
+    @if (Session::get('delete'))
+        <div class="alert alert-danger w-100">
+            {{ Session::get('delete') }}
+        </div>
+    @endif
 
     <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -53,9 +53,10 @@ Portfolio
                             <div class="mb-3">
                                 <h3>Portfolio</h3>
                                 <label for="exampleFormControlInput1" class="form-label">Description</label>
-                                <input type="text" name="desc" class="form-control mb-3" id="exampleFormControlInput1"
-                                    placeholder="Input Address">
-                                <input type="file" name="image" class="form-control mb-3" id="inputGroupFile02">
+                                <textarea class="form-control" placeholder="Description" name="desc" id="floatingTextarea"></textarea>
+                                <label for="exampleFormControlInput1" class="form-label">Image</label>
+                                <input type="file" name="image" class="dropify" id="image" data-default-file=""
+                                    required />
                             </div>
                             <button type="submit" class="btn btn-primary"></i> Submit</button>
                         </form>
@@ -64,7 +65,7 @@ Portfolio
             </div>
         </div>
     </div>
-    <div class="mt-5">
+    <div class="">
         <div class="wrapperTable table-responsive">
             <table id="userTable" class="tables" style="width:100%">
                 <thead>
@@ -84,11 +85,12 @@ Portfolio
                             <td>{{ $i['image'] }}</td>
                             <td>
                                 <div class="ml-auto">
-                                    <button type="button" class="btn btn-outline-primary show-edit-modal" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal1" data-id="{{ $i->id }}"
-                                            data-desc="{{ $i->desc }}" data-image="{{ $i->image }}">Edit</button>
+                                    <button type="button" class="btn btn-outline-primary show-edit-modal"
+                                        data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{ $i->id }}"
+                                        data-desc="{{ $i->desc }}" data-image="{{ $i->image }}">Edit</button>
 
-                                        <a class="btn btn-outline-danger deleteee" href="{{ route('delete.portfolio', ['id' => $i['id']]) }}">Hapus</a>
+                                    <a class="btn btn-outline-danger deleteee"
+                                        href="{{ route('delete.portfolio', ['id' => $i['id']]) }}">Hapus</a>
                                 </div>
 
                             </td>
@@ -101,7 +103,7 @@ Portfolio
 
         {{-- Modal --}}
         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
@@ -113,12 +115,11 @@ Portfolio
                             @csrf
                             <label for="misi">Desc</label>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" placeholder="Desc" id="descEdit" style="height: 100px"
-                                    name="desc"></textarea>
+                                <textarea class="form-control" placeholder="Desc" id="descEdit" style="height: 100px" name="desc"></textarea>
                             </div>
                             <label for="visi">Image</label>
                             <div class="form-floating mb-3">
-                                 <input type="file" name="image" class="form-control mb-3" id="imageEdit">
+                                <input type="file" name="image" class="form-control mb-3" id="imageEdit">
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary">Save changes</button>
@@ -129,11 +130,34 @@ Portfolio
             </div>
         </div>
         {{-- End Modal --}}
+
+        <!-- Modal Edit -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit News</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="edit">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Edit -->
+
     </div>
 
 @endsection
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
+        integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
+        $('.dropify').dropify();
+
         $(document).ready(function() {
             $('#userTable').DataTable({
                 "info": false,
@@ -147,6 +171,37 @@ Portfolio
                 $('#imageEdit').val($(this).data('image'));
                 $('#portfolio-id').val($(this).data('id'));
             });
+        });
+
+        $('#editModal').on('shown.bs.modal', function(e) {
+            $user_id = $(e.relatedTarget).data('user_id');
+            var html = `
+
+                <form  method="post" action="/dashboard/portfolio/update/${$(e.relatedTarget).data('id')}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                                <label for="desc" class="form-label">desc</label>
+                                <input type="text" class="form-control" id="desc" name="desc"
+                                    aria-describedby="emailHelp" placeholder="..." value="${$(e.relatedTarget).data('desc')}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Image</label>
+                                <input type="file" name="image" class="dropify" id="image" data-default-file="/public/assets/img/data/${$(e.relatedTarget).data('image')}" />
+                                <input type="hidden" name="old_image" value="/public/assets/img/data/${$(e.relatedTarget).data('image')}">
+                                <p class="text-danger mt-1" style="font-size: 14px">(Max Size 2MB)</p>
+                            </div>
+                    <div class="d-flex justify-content-end mb-3">
+                        <button class="btn btn-primary" type="submit" value="Validate!">
+                            Save
+                        </button>
+                    </div>
+
+                </form>
+                `;
+
+
+            $('#edit').html(html);
+            $('.dropify').dropify();
         });
 
         // $('.deleteee').click(function() {

@@ -6,6 +6,7 @@ use App\Models\Portfolio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class PortfolioController extends Controller
 {
@@ -27,7 +28,7 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-       
+
         // return view('dashboard.porfolio');
     }
 
@@ -94,34 +95,48 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'image'=>'required',
-            'desc'=> 'required',
-            
-        ]);
+        // $request->validate([
+        //     'image'=>'required',
+        //     'desc'=> 'required',
 
-        $image = $request->file('image');
-        $imgName = time().rand().'.'.$image->extension();
+        // ]);
 
-        if(!file_exists(public_path('/assets/img/data/'.$image->getClientOriginalName()))){
-            //set untuk menyimpan file nya
-            $dPath = public_path('/assets/img/data/');
-            //memindahkan file yang diupload ke directory yang telah ditentukan
-            $image->move($dPath, $imgName);
-            $uploaded = $imgName;
-        }else{
-            $uploaded = $image->getClientOriginalName();
+        // $image = $request->file('image');
+        // $imgName = time().rand().'.'.$image->extension();
+
+        // if(!file_exists(public_path('/assets/img/data/'.$image->getClientOriginalName()))){
+        //     $dPath = public_path('/assets/img/data/');
+        //     $image->move($dPath, $imgName);
+        //     $uploaded = $imgName;
+        // }else{
+        //     $uploaded = $image->getClientOriginalName();
+        // }
+
+        // Portfolio::where('id', $id)->update([
+        //     'image'=> $uploaded,
+        //     'desc' => $request->desc,
+
+        // ]);
+
+        if ($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $thumbname = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . '/assets/img/data' . '/', $thumbname);
+
+            DB::table('portfolios')->where('id', $id)->update([
+                'desc' => $request->desc,
+                'image' => $thumbname
+            ]);
+        } else {
+            DB::table('portfolios')->where('id', $id)->update([
+                'desc' => $request->desc,
+            ]);
         }
-        
-        Portfolio::where('id', $request->id)->update([
-            'image'=> $uploaded,
-            'desc' => $request->desc,
-    
-        ]);
         return redirect()->back()->with('successUp', 'Anda berhasil mengupdate data');
-      
+
     }
 
     /**
