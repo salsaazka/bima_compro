@@ -144,7 +144,9 @@
             </div>
 
             <div class="content">
-
+                <div class="ml-auto">
+                    <a class="btn btn-outline-primary " href="/login">Login</a>
+                </div>
                 @yield('content')
 
             </div>

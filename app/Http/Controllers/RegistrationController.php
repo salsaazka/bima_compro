@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Registration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class RegistrationController extends Controller
 {
@@ -65,7 +70,9 @@ class RegistrationController extends Controller
 
         $user = $request->only('email', 'password');
         if (Auth::attempt($user)) {
-            return redirect('index');
+            return redirect()->route('index');
+        }else{
+            return view('/')->with('fail', 'Gagal login, silahkan periksa dan coba lagi!');
         }
     }
 
