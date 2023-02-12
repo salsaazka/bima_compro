@@ -76,6 +76,17 @@ class RegistrationController extends Controller
         }
     }
 
+    
+    public function logout()
+    {
+        Auth::logout();
+        //mengarahkan ke halaman login
+        return redirect('/login');
+    }
+
+    public function error(){
+       return view('error');
+    }
     /**
      * Show the form for creating a new resource.
      *

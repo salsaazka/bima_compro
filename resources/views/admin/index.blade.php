@@ -106,7 +106,7 @@
 
                     <span>Vision & Mission</span>
                 </a>
-                <a href="#" class="sidebar-item" onclick="toggleActive(this)">
+                <a href="/logout" class="sidebar-item" onclick="toggleActive(this)">
                     <!-- <img src="./assets/img/global/log-out.svg" alt=""> -->
 
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
