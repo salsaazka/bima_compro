@@ -30,7 +30,7 @@
         </button>
         <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Form Portfolio</h1>
@@ -52,10 +52,16 @@
 
                             <div class="mb-3">
                                 <h3>Portfolio</h3>
+                                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                                <input type="text" name="title" class="form-control mb-3" id="exampleFormControlInput1"
+                                    placeholder="Input Title">
                                 <label for="exampleFormControlInput1" class="form-label">Description</label>
                                 <textarea class="form-control" placeholder="Description" name="desc" id="floatingTextarea"></textarea>
                                 <label for="exampleFormControlInput1" class="form-label">Image</label>
-                                <input type="file" name="image" class="dropify" id="image" data-default-file=""
+                                <input type="file" name="image" class="dropify mb-3" id="image" data-default-file=""
+                                    required />
+                                <label for="exampleFormControlInput1" class="form-label">Client</label>
+                                <input type="file" name="client" class="dropify" id="client" data-default-file=""
                                     required />
                             </div>
                             <button type="submit" class="btn btn-primary"></i> Submit</button>

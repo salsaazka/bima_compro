@@ -42,25 +42,38 @@ class PortfolioController extends Controller
     {
         $request->validate([
             'image'=> 'required',
-            'desc'=> 'required'
+            'desc'=> 'required',
+            'title'=> 'required',
+            'client'=> 'required',
 
         ]);
         $image = $request->file('image');
         $imgName = time().rand().'.'.$image->extension();
 
         if(!file_exists(public_path('/assets/img/data/'.$image->getClientOriginalName()))){
-            //set untuk menyimpan file nya
             $dPath = public_path('/assets/img/data/');
-            //memindahkan file yang diupload ke directory yang telah ditentukan
             $image->move($dPath, $imgName);
             $uploaded = $imgName;
         }else{
             $uploaded = $image->getClientOriginalName();
         }
 
+        $client = $request->file('client');
+        $clientName = time().rand().'.'.$client->extension();
+
+        if(!file_exists(public_path('/assets/img/data/'.$client->getClientOriginalName()))){
+            $dPathh = public_path('/assets/img/data/');
+            $client->move($dPathh, $clientName);
+            $uploadedd = $clientName;
+        }else{
+            $uploadedd = $client->getClientOriginalName();
+        }
+
         Portfolio::create([
+            'title' => $request->title,
             'desc' => $request->desc,
             'image' => $uploaded,
+            'client' => $uploadedd,
         ]);
         return redirect()->back()->with('success', 'Anda berhasil menambahkan data!');
     }
