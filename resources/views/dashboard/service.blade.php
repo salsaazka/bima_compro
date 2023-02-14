@@ -1,7 +1,7 @@
 @extends('admin/index')
 
 @section('title')
-    Portfolio
+    Service
 @endsection
 
 @section('content')
@@ -33,11 +33,11 @@
             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Form Portfolio</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Form Service</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ route('store.portfolio') }}" enctype="multipart/form-data"
+                        <form method="POST" action="{{ route('store.services') }}" enctype="multipart/form-data"
                             class="card py-4 px-4">
                             @csrf
                             @if ($errors->any())
@@ -51,7 +51,7 @@
                             @endif
 
                             <div class="mb-3">
-                                <h3>Portfolio</h3>
+                                <h3>Service</h3>
                                 <label for="exampleFormControlInput1" class="form-label">Title</label>
                                 <input type="text" name="title" class="form-control mb-3" id="exampleFormControlInput1"
                                     placeholder="Input Title">
@@ -59,9 +59,6 @@
                                 <textarea class="form-control" placeholder="Description" name="desc" id="floatingTextarea"></textarea>
                                 <label for="exampleFormControlInput1" class="form-label">Image</label>
                                 <input type="file" name="image" class="dropify mb-3" id="image" data-default-file=""
-                                    required />
-                                <label for="exampleFormControlInput1" class="form-label">Client</label>
-                                <input type="file" name="client" class="dropify" id="client" data-default-file=""
                                     required />
                             </div>
                             <button type="submit" class="btn btn-primary"></i> Submit</button>
@@ -85,7 +82,7 @@
 
                 </thead>
                 <tbody>
-                    @foreach ($portfolio as $key => $i)
+                    @foreach ($service as $key => $i)
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $i['title'] }}</td>
@@ -98,7 +95,7 @@
                                         data-desc="{{ $i->desc }}" data-image="{{ $i->image }}">Edit</button>
 
                                     <a class="btn btn-outline-danger deleteee"
-                                        href="{{ route('delete.portfolio', ['id' => $i['id']]) }}">Hapus</a>
+                                        href="{{ route('delete.services', ['id' => $i['id']]) }}">Hapus</a>
                                 </div>
 
                             </td>
@@ -118,10 +115,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{!! url('dashboard/portfolio/update') !!}" method="post">
-                            <input type="hidden" id="portfolio-id" name="id">
+                        <form action="{!! url('dashboard/service/update') !!}" method="post">
+                            <input type="hidden" id="service-id" name="id">
                             @csrf
-                            <label for="misi">Desc</label>
+                            <label for="misi">Title</label>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="title" placeholder="Input Title">
+                            </div>
+                            <label for="misi">Description</label>
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" placeholder="Desc" id="descEdit" style="height: 100px" name="desc"></textarea>
                             </div>
@@ -177,7 +178,7 @@
             $(this).click(function() {
                 $('#descEdit').val($(this).data('desc'));
                 $('#imageEdit').val($(this).data('image'));
-                $('#portfolio-id').val($(this).data('id'));
+                $('#service-id').val($(this).data('id'));
             });
         });
 
@@ -185,7 +186,7 @@
             $user_id = $(e.relatedTarget).data('user_id');
             var html = `
 
-                <form  method="post" action="/dashboard/portfolio/update/${$(e.relatedTarget).data('id')}" enctype="multipart/form-data">
+                <form  method="post" action="/dashboard/service/update/${$(e.relatedTarget).data('id')}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                                 <label for="desc" class="form-label">desc</label>
@@ -222,7 +223,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "dashboard/portfolio/delete/"
+                        window.location = "dashboard/service/delete/"
                         swal("Data Berhasil Dihapus", {
                             icon: "success",
                         });

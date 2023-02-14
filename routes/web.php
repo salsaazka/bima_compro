@@ -6,6 +6,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\VisionMissionController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TestimoniController;
 
 Route::middleware('Guest')->group(function () {
 Route::get('/', function () {
@@ -43,6 +45,18 @@ Route::get('/dashboard/vismis', [VisionMissionController::class, 'index'])->name
 Route::post('/dashboard/vismis/store', [VisionMissionController::class, 'store'])->name('store.VisMiss');
 Route::get('/dashboard/vismis/edit', [VisionMissionController::class, 'edit'])->name('edit.VisMiss');
 Route::post('/dashboard/vismis/update', [VisionMissionController::class, 'update'])->name('update.VisMiss');
+
+//Service
+Route::get('/dashboard/service', [ServiceController::class, 'index'])->name('index.services');
+Route::post('/dashboard/service/store', [ServiceController::class, 'store'])->name('store.services');
+Route::get('/dashboard/service/edit', [ServiceController::class, 'edit'])->name('edit.services');
+Route::post('/dashboard/service/update', [ServiceController::class, 'update'])->name('update.services');
+Route::get('/dashboard/testimoni/delete', [ServiceController::class, 'destroy'])->name('delete.services');
+//Testimoni
+Route::get('/dashboard/testimoni', [TestimoniController::class, 'index'])->name('index');
+Route::post('/dashboard/testimoni/store', [TestimoniController::class, 'store'])->name('store.testimoni');
+Route::get('/dashboard/testimoni/delete', [TestimoniController::class, 'destroy'])->name('delete.testimoni');
+
 });
 
 Route::get('/logout', [RegistrationController::class, 'logout'])->name('logout');
