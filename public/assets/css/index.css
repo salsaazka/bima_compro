@@ -88,7 +88,7 @@ aside #toggle-navbar {
   align-items: center;
 }
 .sidebar-item.active {
-  background: #4640DE;
+  background: #17A2B8;
 }
 .sidebar-item.active span {
   color: #fff;
@@ -442,7 +442,7 @@ aside #toggle-navbar {
 }
 .employee-status.unverified {
   text-decoration-line: underline;
-  color: #4640DE;
+  color: #17A2B8;
 }
 .employee-status span,
 .employee-status a {
@@ -652,4 +652,20 @@ table.dataTable thead th, table.dataTable thead td{
 
 table.dataTable.no-footer{
     border-bottom: none;
+}
+
+.btn-primary{
+    background-color: #17A2B8 !important;
+    border-color: white !important;
+}
+
+.btn-outline-primary{
+    color: #17A2B8 !important;
+    border-color: #17A2B8 !important;
+}
+
+.btn-outline-primary:hover{
+    color: white !important;
+    background-color: #17A2B8 !important;
+    border-color: #17A2B8 !important;
 }

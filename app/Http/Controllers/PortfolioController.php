@@ -139,13 +139,25 @@ class PortfolioController extends Controller
             $thumbname = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path() . '/assets/img/data' . '/', $thumbname);
 
+            $filee = $request->file('client');
+            $thumbnamee = time() . '-' . $filee->getClientOriginalName();
+            $filee->move(public_path() . '/assets/img/data' . '/', $thumbnamee);
+
             DB::table('portfolios')->where('id', $id)->update([
                 'desc' => $request->desc,
-                'image' => $thumbname
+                'title' => $request->title,
+                'image' => $thumbname,
+                'client' => $thumbnamee,
             ]);
         } else {
+            $filee = $request->file('client');
+            $thumbnamee = time() . '-' . $filee->getClientOriginalName();
+            $filee->move(public_path() . '/assets/img/data' . '/', $thumbnamee);
+
             DB::table('portfolios')->where('id', $id)->update([
                 'desc' => $request->desc,
+                'title' => $request->title,
+                'client' => $thumbnamee,
             ]);
         }
         return redirect()->back()->with('successUp', 'Anda berhasil mengupdate data');
