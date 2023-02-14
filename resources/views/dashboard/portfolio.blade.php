@@ -95,7 +95,7 @@
                                 <div class="ml-auto">
                                     <button type="button" class="btn btn-outline-primary show-edit-modal"
                                         data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{ $i->id }}"
-                                        data-desc="{{ $i->desc }}" data-image="{{ $i->image }}">Edit</button>
+                                        data-title="{{ $i->title }}" data-desc="{{ $i->desc }}" data-image="{{ $i->image }}" data-client="{{ $i->client }}">Edit</button>
 
                                     <a class="btn btn-outline-danger deleteee"
                                         href="{{ route('delete.portfolio', ['id' => $i['id']]) }}">Hapus</a>
@@ -107,37 +107,6 @@
                 </tbody>
             </table>
         </div>
-
-
-        {{-- Modal --}}
-        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{!! url('dashboard/portfolio/update') !!}" method="post">
-                            <input type="hidden" id="portfolio-id" name="id">
-                            @csrf
-                            <label for="misi">Desc</label>
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" placeholder="Desc" id="descEdit" style="height: 100px" name="desc"></textarea>
-                            </div>
-                            <label for="visi">Image</label>
-                            <div class="form-floating mb-3">
-                                <input type="file" name="image" class="form-control mb-3" id="imageEdit">
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- End Modal --}}
 
         <!-- Modal Edit -->
         <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -178,6 +147,7 @@
                 $('#descEdit').val($(this).data('desc'));
                 $('#imageEdit').val($(this).data('image'));
                 $('#portfolio-id').val($(this).data('id'));
+                $('#portfolio-id').val($(this).data('id'));
             });
         });
 
@@ -188,6 +158,11 @@
                 <form  method="post" action="/dashboard/portfolio/update/${$(e.relatedTarget).data('id')}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    aria-describedby="emailHelp" placeholder="..." value="${$(e.relatedTarget).data('title')}">
+                            </div>
+                    <div class="mb-3">
                                 <label for="desc" class="form-label">desc</label>
                                 <input type="text" class="form-control" id="desc" name="desc"
                                     aria-describedby="emailHelp" placeholder="..." value="${$(e.relatedTarget).data('desc')}">
@@ -196,6 +171,12 @@
                                 <label for="image" class="form-label">Image</label>
                                 <input type="file" name="image" class="dropify" id="image" data-default-file="/public/assets/img/data/${$(e.relatedTarget).data('image')}" />
                                 <input type="hidden" name="old_image" value="/public/assets/img/data/${$(e.relatedTarget).data('image')}">
+                                <p class="text-danger mt-1" style="font-size: 14px">(Max Size 2MB)</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="client" class="form-label">client</label>
+                                <input type="file" name="client" class="dropify" id="client" data-default-file="/public/assets/img/data/${$(e.relatedTarget).data('client')}" />
+                                <input type="hidden" name="old_client" value="/public/assets/img/data/${$(e.relatedTarget).data('client')}">
                                 <p class="text-danger mt-1" style="font-size: 14px">(Max Size 2MB)</p>
                             </div>
                     <div class="d-flex justify-content-end mb-3">

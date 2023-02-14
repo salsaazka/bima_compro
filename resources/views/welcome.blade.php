@@ -116,7 +116,8 @@
                 <p>Our client</p>
                 <div class="multiple-items">
                     @foreach (DB::table('clients')->orderBy('id', 'asc')->get() as $item)
-                    <div><img src="{{ url('assets/img/data/' . $item->image) }}" style="margin: 10px 0 0 0; max-height: 40px; max-width: 120px"></div>
+                        <div><img src="{{ url('assets/img/data/' . $item->image) }}"
+                                style="margin: 10px 0 0 0; max-height: 40px; max-width: 120px"></div>
                     @endforeach
                 </div>
             </div>
@@ -125,10 +126,12 @@
                 style="margin-left: 925px;margin-top: 240px;width: 493px;position: absolute;">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ url('assets/img/global/halaman-fotoDepan2.png') }}" class="d-block" style="width: 493px; height: 595px;">
+                        <img src="{{ url('assets/img/global/halaman-fotoDepan2.png') }}" class="d-block"
+                            style="width: 493px; height: 595px;">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ url('assets/img/global/halaman-fotoDepan2.png') }}" class="d-block" style="width: 493px; height: 595px;">
+                        <img src="{{ url('assets/img/global/halaman-fotoDepan2.png') }}" class="d-block"
+                            style="width: 493px; height: 595px;">
                     </div>
                 </div>
 
@@ -229,68 +232,45 @@
                 </div>
 
                 <div class="wrapper-portofolio">
-                    <div class="porto-content">
-                        <div class="porto-img">
-                            <img src="{{ url('assets/img/global/biofuel.png') }}" alt="">
-                        </div>
+                    @foreach (DB::table('portfolios')->limit(3)->get() as $item)
+                        @if ($item->id % 2 != 0)
+                            <div class="porto-content">
+                                <div class="porto-img">
+                                    <img src="{{ url('assets/img/data/'. $item->image) }}" alt="">
+                                </div>
 
-                        <div class="container">
-                            <div class="title-desc">
-                                <h1>Project BioFuel</h1>
-                                <h6>Lorem ipsum dolor sit amet consectetur. Arcu elit ut morbi varius metus adipiscing.
-                                    Id venenatis
-                                    tempor egestas sed augue tortor risus faucibus eget. Mauris aliquam porta massa
-                                    faucibus ac.</h6>
+                                <div class="container">
+                                    <div class="title-desc">
+                                        <h1>{{ $item->title }}</h1>
+                                        <h6>{{ $item->desc }}</h6>
+                                    </div>
+
+                                    <div class="client">
+                                        <p>— Client</p>
+                                        <img src="{{ url('assets/img/data/'. $item->client) }}" style="max-width: 300px; max-height: 60px">
+                                    </div>
+                                </div>
                             </div>
+                        @else
+                            <div class="porto-content">
+                                <div class="porto-img-right">
+                                    <img src="{{ url('assets/img/data/'. $item->image) }}" alt="">
+                                </div>
 
-                            <div class="client">
-                                <p>— Client</p>
-                                <img src="img/pertamina.png" alt="">
+                                <div class="container-left">
+                                    <div class="title-desc">
+                                        <h1>{{ $item->title }}</h1>
+                                        <h6>{{ $item->desc }}</h6>
+                                    </div>
+
+                                    <div class="client">
+                                        <p>— Client</p>
+                                        <img src="{{ url('assets/img/data/'. $item->client) }}"  style="max-width: 300px; max-height: 60px">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="porto-content">
-                        <div class="porto-img-right">
-                            <img src="{{ url('assets/img/global/biofuel.png') }}" alt="">
-                        </div>
-
-                        <div class="container-left">
-                            <div class="title-desc">
-                                <h1>Project BioTech</h1>
-                                <h6>Lorem ipsum dolor sit amet consectetur. Arcu elit ut morbi varius metus adipiscing.
-                                    Id venenatis
-                                    tempor egestas sed augue tortor risus faucibus eget. Mauris aliquam porta massa
-                                    faucibus ac.</h6>
-                            </div>
-
-                            <div class="client">
-                                <p>— Client</p>
-                                <img src="img/suzuki.png" width="180" alt="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="porto-content">
-                        <div class="porto-img">
-                            <img src="{{ url('assets/img/global/biofuel.png') }}" alt="">
-                        </div>
-
-                        <div class="container">
-                            <div class="title-desc">
-                                <h1>Project Pengelolaan Semen</h1>
-                                <h6>Lorem ipsum dolor sit amet consectetur. Arcu elit ut morbi varius metus adipiscing.
-                                    Id venenatis
-                                    tempor egestas sed augue tortor risus faucibus eget. Mauris aliquam porta massa
-                                    faucibus ac.</h6>
-                            </div>
-
-                            <div class="client">
-                                <p>— Client</p>
-                                <img src="img/semen-3roda.png" width="90" alt="">
-                            </div>
-                        </div>
-                    </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
 
@@ -306,20 +286,20 @@
                     <img src="{{ url('assets/img/global/scientist.png') }}" alt="ilmuan">
 
                     <div class="desc d-flex flex-column mt-3">
-                        @foreach (DB::table('vision_missions')->where('id', 1)->get() as $item )
-                        <div class="box mx-3">
-                            <h6 class="mb-3">0{{ $item->id }}</h6>
-                            <h3 class="mb-3">{{ $item->title }}</h3>
-                            <p>{{ $item->desc }}</p>
-                        </div>
+                        @foreach (DB::table('vision_missions')->where('id', 1)->get() as $item)
+                            <div class="box mx-3">
+                                <h6 class="mb-3">0{{ $item->id }}</h6>
+                                <h3 class="mb-3">{{ $item->title }}</h3>
+                                <p>{{ $item->desc }}</p>
+                            </div>
                         @endforeach
 
-                        @foreach (DB::table('vision_missions')->where('id', 2)->get() as $item )
-                        <div class="box mx-3">
-                            <h6 class="mb-3">0{{ $item->id }}</h6>
-                            <h3 class="mb-3">{{ $item->title }}</h3>
-                            <p>{{ $item->desc }}</p>
-                        </div>
+                        @foreach (DB::table('vision_missions')->where('id', 2)->get() as $item)
+                            <div class="box mx-3">
+                                <h6 class="mb-3">0{{ $item->id }}</h6>
+                                <h3 class="mb-3">{{ $item->title }}</h3>
+                                <p>{{ $item->desc }}</p>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -453,9 +433,13 @@
                         </p>
                     </div>
                     <div class="footer-social d-flex flex-column">
-                        <a href="mailto:{{ DB::table('contacts')->first()->email }}"><img src="{{ url('assets/img/global/icon_inbox.png') }}" width="20"> {{ DB::table('contacts')->first()->email }}</a>
-                        <a href=""><img src="{{ url('assets/img/global/icon_telp.png') }}" width="20"> {{ DB::table('contacts')->first()->no_telp }} (WA)</a>
-                        <a href=""><img src="{{ url('assets/img/global/icon_web.png') }}" width="20"> {{ DB::table('contacts')->first()->web }}</a>
+                        <a href="mailto:{{ DB::table('contacts')->first()->email }}"><img
+                                src="{{ url('assets/img/global/icon_inbox.png') }}" width="20">
+                            {{ DB::table('contacts')->first()->email }}</a>
+                        <a href=""><img src="{{ url('assets/img/global/icon_telp.png') }}" width="20">
+                            {{ DB::table('contacts')->first()->no_telp }} (WA)</a>
+                        <a href=""><img src="{{ url('assets/img/global/icon_web.png') }}" width="20">
+                            {{ DB::table('contacts')->first()->web }}</a>
                     </div>
                 </div>
 
