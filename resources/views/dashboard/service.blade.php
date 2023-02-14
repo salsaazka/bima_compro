@@ -176,6 +176,7 @@
 
         $('.show-edit-modal').each(function() {
             $(this).click(function() {
+                $('#titleEdit').val($(this).data('title'));
                 $('#descEdit').val($(this).data('desc'));
                 $('#imageEdit').val($(this).data('image'));
                 $('#service-id').val($(this).data('id'));
@@ -189,16 +190,21 @@
                 <form  method="post" action="/dashboard/service/update/${$(e.relatedTarget).data('id')}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                                <label for="desc" class="form-label">desc</label>
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    aria-describedby="emailHelp" placeholder="..." value="${$(e.relatedTarget).data('title')}">
+                    </div>
+                    <div class="mb-3">
+                                <label for="desc" class="form-label">Description</label>
                                 <input type="text" class="form-control" id="desc" name="desc"
                                     aria-describedby="emailHelp" placeholder="..." value="${$(e.relatedTarget).data('desc')}">
-                            </div>
-                            <div class="mb-3">
+                    </div>
+                    <div class="mb-3">
                                 <label for="image" class="form-label">Image</label>
                                 <input type="file" name="image" class="dropify" id="image" data-default-file="/public/assets/img/data/${$(e.relatedTarget).data('image')}" />
                                 <input type="hidden" name="old_image" value="/public/assets/img/data/${$(e.relatedTarget).data('image')}">
                                 <p class="text-danger mt-1" style="font-size: 14px">(Max Size 2MB)</p>
-                            </div>
+                    </div>
                     <div class="d-flex justify-content-end mb-3">
                         <button class="btn btn-primary" type="submit" value="Validate!">
                             Save

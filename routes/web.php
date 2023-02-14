@@ -51,7 +51,7 @@ Route::get('/dashboard/service', [ServiceController::class, 'index'])->name('ind
 Route::post('/dashboard/service/store', [ServiceController::class, 'store'])->name('store.services');
 Route::get('/dashboard/service/edit', [ServiceController::class, 'edit'])->name('edit.services');
 Route::post('/dashboard/service/update', [ServiceController::class, 'update'])->name('update.services');
-Route::get('/dashboard/testimoni/delete', [ServiceController::class, 'destroy'])->name('delete.services');
+Route::get('/dashboard/service/delete', [ServiceController::class, 'destroy'])->name('delete.services');
 //Testimoni
 Route::get('/dashboard/testimoni', [TestimoniController::class, 'index'])->name('index');
 Route::post('/dashboard/testimoni/store', [TestimoniController::class, 'store'])->name('store.testimoni');
