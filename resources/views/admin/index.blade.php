@@ -39,7 +39,7 @@
             <aside class="sidebar">
                 <a href="#" class="sidebar-logo">
                     <div class="d-flex justify-content-start align-items-center">
-                        <img src="{{ url('assets/img/global/logo.svg') }}" alt="">
+                        <img src="{{ url('assets/img/global/logo.png') }}" style="width: 60px">
                         <span>Admin Bima</span>
                     </div>
 

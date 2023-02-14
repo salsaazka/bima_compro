@@ -81,7 +81,7 @@
 
                                         <div class="">
                                             <a class="btn btn-secondary text-decoration-none" href="/">Back</a>
-                                            <button class="btn btn-primary" type="button">Login</button>
+                                            <button class="btn btn-primary" type="submit">Login</button>
                                         </div>
                                     </form>
 
