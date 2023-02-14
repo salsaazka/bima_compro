@@ -76,12 +76,12 @@ class RegistrationController extends Controller
         }
     }
 
-    
+
     public function logout()
     {
         Auth::logout();
         //mengarahkan ke halaman login
-        return redirect('/login');
+        return redirect('/');
     }
 
     public function error(){

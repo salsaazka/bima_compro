@@ -6,17 +6,17 @@
 
 @section('content')
 
-@if (Session::get('success'))
-<div class="alert alert-success w-100">
-   {{ Session::get('success') }}
-</div>
-@endif
+    @if (Session::get('success'))
+        <div class="alert alert-success w-100">
+            {{ Session::get('success') }}
+        </div>
+    @endif
 
-@if (Session::get('delete'))
-<div class="alert alert-danger w-100">
-   {{ Session::get('delete') }}
-</div>
-@endif
+    @if (Session::get('delete'))
+        <div class="alert alert-danger w-100">
+            {{ Session::get('delete') }}
+        </div>
+    @endif
     <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah
@@ -48,7 +48,9 @@
                                 <label for="exampleFormControlInput1" class="form-label ">Name</label>
                                 <input type="text" name="name" class="form-control mb-3" id="exampleFormControlInput1"
                                     placeholder="Input Name">
-                                <input type="file" name="image" class="form-control mb-3s" id="inputGroupFile02">
+                                    <label for="exampleFormControlInput1" class="form-label ">Image</label>
+                                <input type="file" name="image" class="dropify mb-3" id="inputGroupFile02"
+                                    data-default-file="" required />
                             </div>
                             <button type="submit" class="btn btn-primary"></i> Submit</button>
                         </form>
@@ -64,7 +66,6 @@
                     <tr>
                         <th>No</th>
                         <th>Name</th>
-                        <th>Image</th>
                         <th>Action</th>
                     </tr>
 
@@ -74,11 +75,11 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $client['name'] }}</td>
-                            <td>{{ $client['image'] }}</td>
                             <td>
 
                                 <div class="ml-auto">
-                                    <a class="btn btn-outline-danger deleteee" href="{{ route('delete.client', ['id' => $client['id']]) }}">Hapus</a>
+                                    <a class="btn btn-outline-danger deleteee"
+                                        href="{{ route('delete.client', ['id' => $client['id']]) }}">Hapus</a>
                                 </div>
                             </td>
                         </tr>
@@ -90,7 +91,13 @@
 
 @endsection
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
+        integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
+        $('.dropify').dropify();
+
         $(document).ready(function() {
             $('#userTable').DataTable({
                 "info": false,

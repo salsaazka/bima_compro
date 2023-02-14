@@ -9,7 +9,7 @@ use App\Http\Controllers\RegistrationController;
 
 Route::middleware('Guest')->group(function () {
 Route::get('/', function () {
-    return view('admin.index');
+    return view('welcome');
 });
 
 //auth
