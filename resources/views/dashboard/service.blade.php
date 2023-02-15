@@ -92,7 +92,7 @@
                                 <div class="ml-auto">
                                     <button type="button" class="btn btn-outline-primary show-edit-modal"
                                         data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{ $i->id }}"
-                                        data-desc="{{ $i->desc }}" data-image="{{ $i->image }}">Edit</button>
+                                        data-title="{{ $i->title }}" data-desc="{{ $i->desc }}" data-image="{{ $i->image }}">Edit</button>
 
                                     <a class="btn btn-outline-danger deleteee"
                                         href="{{ route('delete.services', ['id' => $i['id']]) }}">Hapus</a>

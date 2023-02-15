@@ -125,14 +125,16 @@
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel-2"
                 style="margin-left: 925px;margin-top: 240px;width: 493px;position: absolute;">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    @foreach (DB::table('services')->limit(4)->get() as $item)
+                        <div class="carousel-item {{ $item->id == 1 ? "active" : "" }}">
+                            <img src="{{ url('assets/img/data/' . $item->image) }}" class="d-block"
+                                style="width: 493px; height: 595px; border-radius: 50px 0 0 50px">
+                        </div>
+                    @endforeach
+                    {{-- <div class="carousel-item active">
                         <img src="{{ url('assets/img/global/halaman-fotoDepan2.png') }}" class="d-block"
                             style="width: 493px; height: 595px;">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ url('assets/img/global/halaman-fotoDepan2.png') }}" class="d-block"
-                            style="width: 493px; height: 595px;">
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="prevnext">
@@ -156,7 +158,8 @@
                 </div>
                 <div class="tab">
                     @foreach (DB::table('services')->limit(4)->get() as $item)
-                        <button class="tablinks" onclick="openCity(event, '{{ $item->id }}')" id="{{ $item->id == 1 ? 'defaultOpen' : '' }}">{{ $item->title }}</button>
+                        <button class="tablinks" onclick="openCity(event, '{{ $item->id }}')"
+                            id="{{ $item->id == 1 ? 'defaultOpen' : '' }}">{{ $item->title }}</button>
                     @endforeach
                     {{-- <button class="tablinks" onclick="openCity(event, 'labs')" id="defaultOpen">B'LABS</button>
                     <button class="tablinks" onclick="openCity(event, 'tech')">B'TECH</button>
@@ -164,9 +167,9 @@
                 </div>
                 <div class="contain-tabs">
                     @foreach (DB::table('services')->limit(4)->get() as $item)
-                    <div id="{{ $item->id }}" class="tabcontent">
-                        <p>{{ $item->desc }}</p>
-                    </div>
+                        <div id="{{ $item->id }}" class="tabcontent">
+                            <p>{{ $item->desc }}</p>
+                        </div>
                     @endforeach
                 </div>
                 <div class="flexUl">
@@ -225,7 +228,7 @@
                         @if ($item->id % 2 != 0)
                             <div class="porto-content">
                                 <div class="porto-img">
-                                    <img src="{{ url('assets/img/data/'. $item->image) }}" alt="">
+                                    <img src="{{ url('assets/img/data/' . $item->image) }}" alt="">
                                 </div>
 
                                 <div class="container">
@@ -236,14 +239,15 @@
 
                                     <div class="client">
                                         <p>— Client</p>
-                                        <img src="{{ url('assets/img/data/'. $item->client) }}" style="max-width: 300px; max-height: 60px">
+                                        <img src="{{ url('assets/img/data/' . $item->client) }}"
+                                            style="max-width: 300px; max-height: 60px">
                                     </div>
                                 </div>
                             </div>
                         @else
                             <div class="porto-content">
                                 <div class="porto-img-right">
-                                    <img src="{{ url('assets/img/data/'. $item->image) }}" alt="">
+                                    <img src="{{ url('assets/img/data/' . $item->image) }}" alt="">
                                 </div>
 
                                 <div class="container-left">
@@ -254,7 +258,8 @@
 
                                     <div class="client">
                                         <p>— Client</p>
-                                        <img src="{{ url('assets/img/data/'. $item->client) }}"  style="max-width: 300px; max-height: 60px">
+                                        <img src="{{ url('assets/img/data/' . $item->client) }}"
+                                            style="max-width: 300px; max-height: 60px">
                                     </div>
                                 </div>
                             </div>
@@ -302,19 +307,20 @@
 
                 <div class="testimonial">
                     @foreach (DB::table('testimonis')->get() as $item)
-                    <div class="card-testi">
-                        <div class="content-card">
-                            <div class="profile-picture d-flex">
-                                <img src="https://ui-avatars.com/api/?name={{ $item->title}}&background=17A2B8&color=fff" width="81" alt="">
-                                <div class="title-card mx-3">
-                                    <h4>{{ $item->title}}</h4>
-                                    <p>{{ $item->position}}</p>
+                        <div class="card-testi">
+                            <div class="content-card">
+                                <div class="profile-picture d-flex">
+                                    <img src="https://ui-avatars.com/api/?name={{ $item->title }}&background=17A2B8&color=fff"
+                                        width="81" alt="">
+                                    <div class="title-card mx-3">
+                                        <h4>{{ $item->title }}</h4>
+                                        <p>{{ $item->position }}</p>
+                                    </div>
                                 </div>
+                                <p class="mt-4">{{ $item->desc }}
+                                </p>
                             </div>
-                            <p class="mt-4">{{ $item->desc}}
-                            </p>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -362,7 +368,7 @@
 
                     <div class="menu">
                         @foreach (DB::table('services')->limit(4)->get() as $item)
-                        <a>{{ $item->title }}</a>
+                            <a>{{ $item->title }}</a>
                         @endforeach
                     </div>
                 </div>
@@ -372,7 +378,7 @@
 
                     <div class="menu">
                         @foreach (DB::table('portfolios')->limit(3)->get() as $item)
-                        <a>{{ $item->title }}</a>
+                            <a>{{ $item->title }}</a>
                         @endforeach
                     </div>
                 </div>

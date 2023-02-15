@@ -102,11 +102,13 @@ class ServiceController extends Controller
 
             DB::table('services')->where('id', $id)->update([
                 'desc' => $request->desc,
+                'title' => $request->title,
                 'image' => $thumbname
             ]);
         } else {
             DB::table('services')->where('id', $id)->update([
                 'desc' => $request->desc,
+                'title' => $request->title,
             ]);
         }
         return redirect()->back()->with('successUp', 'Anda berhasil mengupdate data');

@@ -50,7 +50,7 @@ Route::post('/dashboard/vismis/update', [VisionMissionController::class, 'update
 Route::get('/dashboard/service', [ServiceController::class, 'index'])->name('index.services');
 Route::post('/dashboard/service/store', [ServiceController::class, 'store'])->name('store.services');
 Route::get('/dashboard/service/edit', [ServiceController::class, 'edit'])->name('edit.services');
-Route::post('/dashboard/service/update', [ServiceController::class, 'update'])->name('update.services');
+Route::post('/dashboard/service/update/{id}', [ServiceController::class, 'update'])->name('update.services');
 Route::get('/dashboard/service/delete', [ServiceController::class, 'destroy'])->name('delete.services');
 //Testimoni
 Route::get('/dashboard/testimoni', [TestimoniController::class, 'index'])->name('index.testimoni');
