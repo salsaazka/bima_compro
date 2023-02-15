@@ -53,7 +53,7 @@ Route::get('/dashboard/service/edit', [ServiceController::class, 'edit'])->name(
 Route::post('/dashboard/service/update', [ServiceController::class, 'update'])->name('update.services');
 Route::get('/dashboard/service/delete', [ServiceController::class, 'destroy'])->name('delete.services');
 //Testimoni
-Route::get('/dashboard/testimoni', [TestimoniController::class, 'index'])->name('index');
+Route::get('/dashboard/testimoni', [TestimoniController::class, 'index'])->name('index.testimoni');
 Route::post('/dashboard/testimoni/store', [TestimoniController::class, 'store'])->name('store.testimoni');
 Route::get('/dashboard/testimoni/delete', [TestimoniController::class, 'destroy'])->name('delete.testimoni');
 

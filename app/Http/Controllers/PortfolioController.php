@@ -149,7 +149,7 @@ class PortfolioController extends Controller
                 'image' => $thumbname,
                 'client' => $thumbnamee,
             ]);
-        } else {
+        } else if ($request->hasFile('client')) {
             $filee = $request->file('client');
             $thumbnamee = time() . '-' . $filee->getClientOriginalName();
             $filee->move(public_path() . '/assets/img/data' . '/', $thumbnamee);
@@ -158,6 +158,11 @@ class PortfolioController extends Controller
                 'desc' => $request->desc,
                 'title' => $request->title,
                 'client' => $thumbnamee,
+            ]);
+        } else {
+            DB::table('portfolios')->where('id', $id)->update([
+                'desc' => $request->desc,
+                'title' => $request->title,
             ]);
         }
         return redirect()->back()->with('successUp', 'Anda berhasil mengupdate data');

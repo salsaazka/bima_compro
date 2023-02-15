@@ -155,30 +155,19 @@
                     <h1>Produk dan Layanan Kami</h1>
                 </div>
                 <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'labs')" id="defaultOpen">B'LABS</button>
+                    @foreach (DB::table('services')->limit(4)->get() as $item)
+                        <button class="tablinks" onclick="openCity(event, '{{ $item->id }}')" id="{{ $item->id == 1 ? 'defaultOpen' : '' }}">{{ $item->title }}</button>
+                    @endforeach
+                    {{-- <button class="tablinks" onclick="openCity(event, 'labs')" id="defaultOpen">B'LABS</button>
                     <button class="tablinks" onclick="openCity(event, 'tech')">B'TECH</button>
-                    <button class="tablinks" onclick="openCity(event, 'cert')">B'CERT</button>
+                    <button class="tablinks" onclick="openCity(event, 'cert')">B'CERT</button> --}}
                 </div>
                 <div class="contain-tabs">
-                    <div id="labs" class="tabcontent">
-                        <p>B'Labs adalah istilah yang kami sebut untuk Layanan Laboratorium baik Kalibrasi maupun
-                            Pengujian, dengan
-                            kompetensi Lab Penguji dan Kalibrasi sesuai dengan KAN ISO 17025. B'Labs dapat membantu
-                            memberikan solusi
-                            untuk semua kebutuhan Pengujian dan kalibrasi.</p>
+                    @foreach (DB::table('services')->limit(4)->get() as $item)
+                    <div id="{{ $item->id }}" class="tabcontent">
+                        <p>{{ $item->desc }}</p>
                     </div>
-
-                    <div id="tech" class="tabcontent">
-                        <p>B.Tech in EEE adalah program UG empat tahun yang dirancang untuk meningkatkan keterampilan
-                            dan
-                            pengetahuan para insinyur yang antusias</p>
-                    </div>
-
-                    <div id="cert" class="tabcontent">
-                        <p>B-Cert adalah portal yang memungkinkan pengguna untuk mengesahkan semua jenis dokumen pesan
-                            di Blockchain
-                            Bitcoin atau Ethereum, dengan memperoleh digital unik</p>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="flexUl">
                     <div class="con">
@@ -312,108 +301,21 @@
                 </div>
 
                 <div class="testimonial">
+                    @foreach (DB::table('testimonis')->get() as $item)
                     <div class="card-testi">
                         <div class="content-card">
                             <div class="profile-picture d-flex">
-                                <img src="img/pp_1.png" width="81" alt="">
+                                <img src="https://ui-avatars.com/api/?name={{ $item->title}}&background=17A2B8&color=fff" width="81" alt="">
                                 <div class="title-card mx-3">
-                                    <h4>Anggana Putra</h4>
-                                    <p>UI/UX Designer</p>
+                                    <h4>{{ $item->title}}</h4>
+                                    <p>{{ $item->position}}</p>
                                 </div>
                             </div>
-                            <p class="mt-4">Lorem ipsum dolor sit amet consectetur. Tellus vitae massa magnis
-                                scelerisque.
-                                Scelerisque ultrices tempus ac donec morbi. Volutpat justo libero sagittis semper eget
-                                augue
-                                pharetra tristique.
+                            <p class="mt-4">{{ $item->desc}}
                             </p>
                         </div>
                     </div>
-                    <div class="card-testi">
-                        <div class="content-card">
-                            <div class="profile-picture d-flex">
-                                <img src="img/pp_1.png" width="81" alt="">
-                                <div class="title-card mx-3">
-                                    <h4>Anggana Putra</h4>
-                                    <p>UI/UX Designer</p>
-                                </div>
-                            </div>
-                            <p class="mt-4">Lorem ipsum dolor sit amet consectetur. Tellus vitae massa magnis
-                                scelerisque.
-                                Scelerisque ultrices tempus ac donec morbi. Volutpat justo libero sagittis semper eget
-                                augue
-                                pharetra tristique.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card-testi">
-                        <div class="content-card">
-                            <div class="profile-picture d-flex">
-                                <img src="img/pp_1.png" width="81" alt="">
-                                <div class="title-card mx-3">
-                                    <h4>Anggana Putra</h4>
-                                    <p>UI/UX Designer</p>
-                                </div>
-                            </div>
-                            <p class="mt-4">Lorem ipsum dolor sit amet consectetur. Tellus vitae massa magnis
-                                scelerisque.
-                                Scelerisque ultrices tempus ac donec morbi. Volutpat justo libero sagittis semper eget
-                                augue
-                                pharetra tristique.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card-testi">
-                        <div class="content-card">
-                            <div class="profile-picture d-flex">
-                                <img src="img/pp_1.png" width="81" alt="">
-                                <div class="title-card mx-3">
-                                    <h4>Anggana Putra</h4>
-                                    <p>UI/UX Designer</p>
-                                </div>
-                            </div>
-                            <p class="mt-4">Lorem ipsum dolor sit amet consectetur. Tellus vitae massa magnis
-                                scelerisque.
-                                Scelerisque ultrices tempus ac donec morbi. Volutpat justo libero sagittis semper eget
-                                augue
-                                pharetra tristique.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card-testi">
-                        <div class="content-card">
-                            <div class="profile-picture d-flex">
-                                <img src="img/pp_1.png" alt="">
-                                <div class="title-card mx-3">
-                                    <h4>Anggana Putra</h4>
-                                    <p>UI/UX Designer</p>
-                                </div>
-                            </div>
-                            <p class="mt-4">Lorem ipsum dolor sit amet consectetur. Tellus vitae massa magnis
-                                scelerisque.
-                                Scelerisque ultrices tempus ac donec morbi. Volutpat justo libero sagittis semper eget
-                                augue
-                                pharetra tristique.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card-testi">
-                        <div class="content-card">
-                            <div class="profile-picture d-flex">
-                                <img src="img/pp_1.png" width="81" alt="">
-                                <div class="title-card mx-3">
-                                    <h4>Anggana Putra</h4>
-                                    <p>UI/UX Designer</p>
-                                </div>
-                            </div>
-                            <p class="mt-4">Lorem ipsum dolor sit amet consectetur. Tellus vitae massa magnis
-                                scelerisque.
-                                Scelerisque ultrices tempus ac donec morbi. Volutpat justo libero sagittis semper eget
-                                augue
-                                pharetra tristique.
-                            </p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -459,9 +361,9 @@
                     <h1>Layanan</h1>
 
                     <div class="menu">
-                        <a href="">B'Labs</a>
-                        <a href="">B'Tech</a>
-                        <a href="">B'Cert</a>
+                        @foreach (DB::table('services')->limit(4)->get() as $item)
+                        <a>{{ $item->title }}</a>
+                        @endforeach
                     </div>
                 </div>
 
@@ -469,9 +371,9 @@
                     <h1>Portofolio</h1>
 
                     <div class="menu">
-                        <a href="">Client</a>
-                        <a href="">How We Works</a>
-                        <a href="">Apa Kata Mereka</a>
+                        @foreach (DB::table('portfolios')->limit(3)->get() as $item)
+                        <a>{{ $item->title }}</a>
+                        @endforeach
                     </div>
                 </div>
 
