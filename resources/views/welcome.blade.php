@@ -86,9 +86,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#about">Tentang Kami</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Masuk</a>
-                    </li>
                 </ul>
             </div>
         </div>
