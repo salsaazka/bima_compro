@@ -21,6 +21,12 @@ class PortfolioController extends Controller
         return view('dashboard.portfolio', compact('portfolio'));
     }
 
+    public function porto()
+    {
+        $portfolio = Portfolio::all();
+        return view('porto', compact('portfolio'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

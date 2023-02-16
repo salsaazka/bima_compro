@@ -12,47 +12,6 @@ use App\Models\User;
 
 class RegistrationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-    }
-    public function register()
-    {
-        return view('auth.register');
-    }
-
-    public function inputRegister(Request $request)
-    {
-        // dd($request->all());
-        // validasi atau aturan value column pada db
-        $request->validate([
-            'name' => 'required|min:4',
-            'no_telp' => 'required|max:13',
-            'address' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-        // tambah data ke db bagian table users
-        Registration::create([
-            'name' => $request->name,
-            'no_telp' => $request->no_telp,
-            'address' => $request->address,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-        User::create([
-            'email' => $request->email,
-            'name' => $request->name,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return redirect()->route('login')->with('success', 'berhasil membuat akun!');
-    }
 
     public function login()
     {
@@ -72,7 +31,7 @@ class RegistrationController extends Controller
         if (Auth::attempt($user)) {
             return redirect()->route('index');
         }else{
-            return view('/')->with('fail', 'Gagal login, silahkan periksa dan coba lagi!');
+            return redirect()->back()->with('fail', 'Gagal login, silahkan periksa dan coba lagi!');
         }
     }
 

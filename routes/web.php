@@ -13,12 +13,11 @@ Route::middleware('Guest')->group(function () {
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/portofolio', [PortfolioController::class, 'porto'])->name('porto');
 
 //auth
 Route::get('/login', [RegistrationController::class, 'login'])->name('login');
 Route::post('/auth/login', [RegistrationController::class, 'auth'])->name('login.auth');
-Route::get('/auth/register', [RegistrationController::class, 'register'])->name('register');
-Route::post('/register', [RegistrationController::class, 'inputRegister'])->name('register.post');
 });
 
 Route::middleware(['Login', 'Role:admin'])->group(function () {
