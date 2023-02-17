@@ -278,7 +278,7 @@
                     <div class="desc d-flex flex-column mt-3">
                         @foreach (DB::table('vision_missions')->where('id', 1)->get() as $item)
                             <div class="box mx-3">
-                                <h6 class="mb-3">0{{ $item->id }}</h6>
+                                <h6 class="mb-3 text-light">0{{ $item->id }}</h6>
                                 <h3 class="mb-3">{{ $item->title }}</h3>
                                 <p>{{ $item->desc }}</p>
                             </div>
@@ -286,7 +286,7 @@
 
                         @foreach (DB::table('vision_missions')->where('id', 2)->get() as $item)
                             <div class="box mx-3">
-                                <h6 class="mb-3">0{{ $item->id }}</h6>
+                                <h6 class="mb-3 text-light">0{{ $item->id }}</h6>
                                 <h3 class="mb-3">{{ $item->title }}</h3>
                                 <p>{{ $item->desc }}</p>
                             </div>
