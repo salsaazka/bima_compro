@@ -95,6 +95,9 @@
         <div class="container">
 
             <div class="content1" id="beranda">
+                <div class="title">
+                    <p>BISA (Believe, Initiative, Satifactions, and Attitude)</p>
+                </div>
                 <div class="text">
                     <h1>Berkomitmen Menciptakan nilai ekonomi bagi pemangku kepentingan.</h1>
                     <p>BSA merupakan penyebutan perusahaan kami, Perusahaan kami berdiri sejak tahun 2020 di Bogor.
@@ -119,7 +122,7 @@
                 style="margin-left: 925px;margin-top: 240px;width: 493px;position: absolute;">
                 <div class="carousel-inner">
                     @foreach (DB::table('services')->limit(4)->get() as $item)
-                        <div class="carousel-item {{ $item->id == 1 ? "active" : "" }}">
+                        <div class="carousel-item {{ $item->id == 1 ? 'active' : '' }}">
                             <img src="{{ url('assets/img/data/' . $item->image) }}" class="d-block"
                                 style="width: 493px; height: 595px; border-radius: 50px 0 0 50px">
                         </div>
@@ -146,6 +149,7 @@
 
             <div class="content2" id="kami">
                 <div class="title">
+                    <p>CORE BUSSINES Bima Scientific Andalan</p>
                     <h1>Produk dan Layanan Kami</h1>
                 </div>
                 <div class="tab">
@@ -211,6 +215,7 @@
 
             <div class="portofolio" id="porto">
                 <div class="title">
+                    <p>Portofolio</p>
                     <h1>Apa Yang Kami Kerjakan?</h1>
                 </div>
 
@@ -263,6 +268,7 @@
 
             <div class="vision-mission" id="about">
                 <div class="title">
+                    <p>Vision and Mission</p>
                     <h1>Visi Dan Misi</h1>
                 </div>
 
@@ -291,6 +297,7 @@
 
             <div class="testimoni mt-5">
                 <div class="title">
+                    <p>Testimonial</p>
                     <h1>Apa Kata Mereka</h1>
                 </div>
 
