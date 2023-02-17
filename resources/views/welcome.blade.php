@@ -264,7 +264,7 @@
                 </div>
             </div>
 
-            <a href="" class="btn btn-outline-info">Lihat Semua</a>
+            <a href="/portofolio" class="btn btn-outline-info">Lihat Semua</a>
 
             <div class="vision-mission" id="about">
                 <div class="title">
@@ -355,7 +355,6 @@
                         <a href="">Layanan Kami</a>
                         <a href="">Portofolio</a>
                         <a href="">Tentang Kami</a>
-                        <a href="">Masuk</a>
                     </div>
                 </div>
 
