@@ -4,6 +4,10 @@
     Portfolio
 @endsection
 
+@section('css')
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+@endsection
+
 @section('content')
 
     @if (Session::get('success'))
@@ -56,10 +60,10 @@
                                 <input type="text" name="title" class="form-control mb-3" id="exampleFormControlInput1"
                                     placeholder="Input Title">
                                 <label for="exampleFormControlInput1" class="form-label">Description</label>
-                                <textarea class="form-control" placeholder="Description" name="desc" id="floatingTextarea"></textarea>
+                                <textarea class="form-control" name="desc" placeholder="Masukan Konten" id="editor"></textarea>
                                 <label for="exampleFormControlInput1" class="form-label">Image</label>
-                                <input type="file" name="image" class="dropify mb-3" id="image" data-default-file=""
-                                    required />
+                                <input type="file" name="image" class="dropify mb-3" id="image"
+                                    data-default-file="" required />
                                 <label for="exampleFormControlInput1" class="form-label">Client</label>
                                 <input type="file" name="client" class="dropify" id="client" data-default-file=""
                                     required />
@@ -95,7 +99,9 @@
                                 <div class="ml-auto">
                                     <button type="button" class="btn btn-outline-primary show-edit-modal"
                                         data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{ $i->id }}"
-                                        data-title="{{ $i->title }}" data-desc="{{ $i->desc }}" data-image="{{ $i->image }}" data-client="{{ $i->client }}">Edit</button>
+                                        data-title="{{ $i->title }}" data-desc="{{ $i->desc }}"
+                                        data-image="{{ url('assets/img/data/' . $i->image) }}"
+                                        data-client="{{ url('assets/img/data/' . $i->client) }}">Edit</button>
 
                                     <a class="btn btn-outline-danger deleteee"
                                         href="{{ route('delete.portfolio', ['id' => $i['id']]) }}">Hapus</a>
@@ -128,6 +134,51 @@
 
 @endsection
 @section('js')
+    <script src="https://cdn.tiny.cloud/1/6hd2kze068a05w2ztyahu8bez8qfx1m8tnxdkv7lx6k8s0p9/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+
+    <script>
+        var editor_config = {
+            path_absolute: "/",
+            selector: '#editor',
+            relative_urls: false,
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table directionality",
+                "emoticons template paste textpattern"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+            file_picker_callback: function(callback, value, meta) {
+                var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName(
+                    'body')[0].clientWidth;
+                var y = window.innerHeight || document.documentElement.clientHeight || document
+                    .getElementsByTagName('body')[0].clientHeight;
+
+                var cmsURL = editor_config.path_absolute + 'laravel-filemanager?editor=' + meta.fieldname;
+                if (meta.filetype == 'image') {
+                    cmsURL = cmsURL + "&type=Images";
+                } else {
+                    cmsURL = cmsURL + "&type=Files";
+                }
+
+                tinyMCE.activeEditor.windowManager.openUrl({
+                    url: cmsURL,
+                    title: 'Filemanager',
+                    width: x * 0.8,
+                    height: y * 0.8,
+                    resizable: "yes",
+                    close_previous: "no",
+                    onMessage: (api, message) => {
+                        callback(message.content);
+                    }
+                });
+            }
+        };
+
+        tinymce.init(editor_config);
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
         integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -152,7 +203,6 @@
         });
 
         $('#editModal').on('shown.bs.modal', function(e) {
-            $user_id = $(e.relatedTarget).data('user_id');
             var html = `
 
                 <form  method="post" action="/dashboard/portfolio/update/${$(e.relatedTarget).data('id')}" enctype="multipart/form-data">
@@ -164,19 +214,18 @@
                             </div>
                     <div class="mb-3">
                                 <label for="desc" class="form-label">desc</label>
-                                <input type="text" class="form-control" id="desc" name="desc"
-                                    aria-describedby="emailHelp" placeholder="..." value="${$(e.relatedTarget).data('desc')}">
+                                <textarea id="editor" class="form-control" name="content" rows="3">${$(e.relatedTarget).data('desc')}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="image" class="form-label">Image</label>
-                                <input type="file" name="image" class="dropify" id="image" data-default-file="/public/assets/img/data/${$(e.relatedTarget).data('image')}" />
-                                <input type="hidden" name="old_image" value="/public/assets/img/data/${$(e.relatedTarget).data('image')}">
+                                <input type="file" name="image" class="dropify" id="image" data-default-file="${$(e.relatedTarget).data('image')}" />
+                                <input type="hidden" name="old_image" value="${$(e.relatedTarget).data('image')}">
                                 <p class="text-danger mt-1" style="font-size: 14px">(Max Size 2MB)</p>
                             </div>
                             <div class="mb-3">
                                 <label for="client" class="form-label">client</label>
-                                <input type="file" name="client" class="dropify" id="client" data-default-file="/public/assets/img/data/${$(e.relatedTarget).data('client')}" />
-                                <input type="hidden" name="old_client" value="/public/assets/img/data/${$(e.relatedTarget).data('client')}">
+                                <input type="file" name="client" class="dropify" id="client" data-default-file="${$(e.relatedTarget).data('client')}" />
+                                <input type="hidden" name="old_client" value="${$(e.relatedTarget).data('client')}">
                                 <p class="text-danger mt-1" style="font-size: 14px">(Max Size 2MB)</p>
                             </div>
                     <div class="d-flex justify-content-end mb-3">
@@ -190,6 +239,8 @@
 
 
             $('#edit').html(html);
+            tinymce.remove('textarea');
+            var test = tinymce.init(editor_config);
             $('.dropify').dropify();
         });
 
