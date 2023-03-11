@@ -1938,3 +1938,22 @@ footer .container .kopikanan {
         padding: 18px 10px;
     }
 }
+
+.slick-next{
+    display: none !important;
+}
+
+#publik a {
+    height: 300px !important;
+    border-radius: 15px;
+}
+
+#publik .slick-list {
+    height: 300px !important;
+}
+
+#publik a img{
+    width: 100% !important;
+    height: 200px !important;
+    border-radius: 15px 15px 0 0;
+}

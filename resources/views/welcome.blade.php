@@ -295,6 +295,27 @@
                 </div>
             </div>
 
+            <div class="publikasi my-5">
+                <div class="title">
+                    <p>Publication</p>
+                    <h1>Publikasi Terbaru </h1>
+                </div>
+                <div class="publik d-flex mt-3 mb-5" id="publik">
+                    @foreach (DB::table('publication')->get() as $item)
+                    <a href="publikasi/detail/{{$item->id}}" class="card me-3 text-decoration-none text-dark">
+                        <img src="{{ url('assets/img/data/' . $item->img) }}" alt="...">
+                        <div class="card-body">
+                            <h4 class="m-0">{{$item->title}}</h4>
+                            <p class="card-text" style="white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            max-width: 380px;">{!! $item->desc !!}</p>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+            </div>
+
             <div class="testimoni mt-5">
                 <div class="title">
                     <p>Testimonial</p>
@@ -458,6 +479,47 @@
                 dots: true,
                 autoplay: true,
                 autoplaySpeed: 2500,
+                responsive: [{
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 991,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                        }
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        }
+                    },
+
+                ]
+            });
+        });
+
+        $(document).ready(function() {
+            $('.publik').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 4000,
                 responsive: [{
                         breakpoint: 1200,
                         settings: {

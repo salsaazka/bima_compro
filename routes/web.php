@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\PublikController;
 use App\Http\Controllers\VisionMissionController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ServiceController;
@@ -14,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/portofolio', [PortfolioController::class, 'porto'])->name('porto');
+Route::get('/publikasi/detail/{id}', [PublikController::class, 'publikk'])->name('publikk');
 
 //auth
 Route::get('/login', [RegistrationController::class, 'login'])->name('login');
@@ -51,10 +53,18 @@ Route::post('/dashboard/service/store', [ServiceController::class, 'store'])->na
 Route::get('/dashboard/service/edit', [ServiceController::class, 'edit'])->name('edit.services');
 Route::post('/dashboard/service/update/{id}', [ServiceController::class, 'update'])->name('update.services');
 Route::get('/dashboard/service/delete', [ServiceController::class, 'destroy'])->name('delete.services');
+
 //Testimoni
 Route::get('/dashboard/testimoni', [TestimoniController::class, 'index'])->name('index.testimoni');
 Route::post('/dashboard/testimoni/store', [TestimoniController::class, 'store'])->name('store.testimoni');
 Route::get('/dashboard/testimoni/delete', [TestimoniController::class, 'destroy'])->name('delete.testimoni');
+
+//Portfolio
+Route::get('/dashboard/publik', [PublikController::class, 'index'])->name('index.publik');
+Route::post('/dashboard/publik/store', [PublikController::class, 'store'])->name('store.publik');
+Route::get('/dashboard/publik/edit/{id}', [PublikController::class, 'edit'])->name('edit.publik');
+Route::post('/dashboard/publik/update/{id}', [PublikController::class, 'update'])->name('update.publik');
+Route::get('/dashboard/publik/delete', [PublikController::class, 'destroy'])->name('delete.publik');
 
 });
 
