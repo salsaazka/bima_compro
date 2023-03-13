@@ -1957,3 +1957,21 @@ footer .container .kopikanan {
     height: 200px !important;
     border-radius: 15px 15px 0 0;
 }
+
+.publikk .a{
+    width: 33.3%;
+}
+
+.publikk .b{
+    width: 66.6%;
+}
+
+@media screen and (max-width: 768px){
+    .publikk .a{
+        width: 100%;
+    }
+
+    .publikk .b{
+        width: 100%;
+    }
+}

@@ -84,6 +84,9 @@
                         <a class="nav-link" href="#porto">Portofolio</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#publicc">Publikasi</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#about">Tentang Kami</a>
                     </li>
                 </ul>
@@ -295,7 +298,7 @@
                 </div>
             </div>
 
-            <div class="publikasi my-5">
+            <div class="publikasi my-5" id="publicc">
                 <div class="title">
                     <p>Publication</p>
                     <h1>Publikasi Terbaru </h1>
