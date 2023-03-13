@@ -71,16 +71,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#beranda">Beranda</a>
+                        <a class="nav-link" aria-current="page" href="/">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#kami">Layanan Kami</a>
+                        <a class="nav-link" href="/">Layanan Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#porto">Portofolio</a>
+                        <a class="nav-link" href="/">Portofolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">Tentang Kami</a>
+                        <a class="nav-link" href="/">Publikasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Tentang Kami</a>
                     </li>
                 </ul>
             </div>
@@ -107,7 +110,7 @@
                                 <div class="container">
                                     <div class="title-desc">
                                         <h1>{{ $item->title }}</h1>
-                                        <h6>{{ $item->desc }}</h6>
+                                        <h6>{!! $item->desc !!}</h6>
                                     </div>
 
                                     <div class="client">
@@ -126,7 +129,7 @@
                                 <div class="container-left">
                                     <div class="title-desc">
                                         <h1>{{ $item->title }}</h1>
-                                        <h6>{{ $item->desc }}</h6>
+                                        <h6>{!! $item->desc !!}</h6>
                                     </div>
 
                                     <div class="client">
