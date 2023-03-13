@@ -106,7 +106,6 @@
                     <p>BSA merupakan penyebutan perusahaan kami, Perusahaan kami berdiri sejak tahun 2020 di Bogor.
                         Bisnis
                         perusahaan kami adalah di bidang Jasa Laboratorium, konsultan dan perdagangan.</p>
-                    <button class="button">Selengkapnya</button>
                 </div>
             </div>
 
